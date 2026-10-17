@@ -205,7 +205,7 @@ function MN(){const k=dkey(new Date())+'|'+S.people;if(_mnk===k)return _mn;const
  while(cnt<DATA.windowDays&&g<40){g++;const m=mealsOf(d);if(!m.sp){cnt++;for(const meal of [m.l,m.di]){if(!meal)continue;need.kimchi=(need.kimchi||0)+DATA.sideKimchi*7*f;for(const r of meal)for(const [n,q] of R(r).ing){const mp=DATA.ingMap[n];if(mp)need[mp[0]]=(need[mp[0]]||0)+q*mp[1]*f;}}if(m.bf==='B'||m.bf==='B2')need.egg=(need.egg||0)+7*f;}d=new Date(d.getTime()+864e5);}
  _mn=need;_mnk=k;return need;}
 function calc(o,stock){const s=stock.v[o.id];if(o.g==='ask')return {need:0,buy:s==='ok'?0:1};if(o.g==='opt')return {need:o.mon,buy:0};
- const need=o.byMenu?(MN()[o.id]||0):o.mon*F()*o.h/30;if(s==='ok')return {need,buy:0};const sh=need-(+s||0);return {need,buy:sh<=0?0:Math.max(0,Math.ceil(sh/o.pack-DATA.tol))};}
+ const need=o.byMenu?(MN()[o.id]||0):o.mon*F()*o.h/30;if(s==='ok')return {need,buy:0};const sh=need-(+s||0);let b=sh<=0?0:Math.max(0,Math.ceil(sh/o.pack-DATA.tol));if(b===0&&sh>0&&(+s||0)<need*0.7)b=1;return {need,buy:b};}
 function rows(){const st=getStock(),sel=getSel();return DATA.order.filter(visible).map(o=>{const c=calc(o,st);const chosen=(o.id in sel)?sel[o.id]:c.buy>0;const cnt=chosen?Math.max(1,c.buy):0;return {o,c,chosen,cnt,cost:cnt*o.price};});}
 function totals(rs){const ch=rs.filter(r=>r.chosen);const sum=ch.reduce((a,r)=>a+r.cost,0);const ship=ch.reduce((a,r)=>a+(r.o.ship||0),0);return {n:ch.length,sum,ship};}
 const fx=v=>(Math.round(v*10)/10).toString();
