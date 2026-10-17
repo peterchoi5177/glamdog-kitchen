@@ -2,410 +2,274 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#e8772e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="양양 주방">
 <title>글램독 양양 주방 가이드</title>
 <style>
-:root{--acc:#e8772e;--acc2:#fff3ea;--ink:#222;--sub:#666;--line:#e7e2dc;--bg:#faf8f5;--ok:#2f8f5b;--warn:#c0392b}
-*{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.5}
-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
-.top{display:flex;align-items:center;gap:10px;padding:10px 16px;flex-wrap:wrap}
-.top h1{font-size:18px;margin:0;flex:1;white-space:nowrap}
-.top h1 span{color:var(--acc)}
-.ctl{display:flex;gap:4px;align-items:center;font-size:13px;color:var(--sub)}
-.seg button{border:1px solid var(--line);background:#fff;padding:5px 10px;font-size:14px;cursor:pointer}
-.seg button:first-child{border-radius:8px 0 0 8px}.seg button:last-child{border-radius:0 8px 8px 0}
-.seg button.on{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
-nav{display:flex;overflow-x:auto;padding:0 8px}
-nav button{border:0;background:none;padding:10px 12px;font-size:15px;color:var(--sub);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
-nav button.on{color:var(--acc);border-bottom-color:var(--acc);font-weight:700}
-main{max-width:1100px;margin:0 auto;padding:16px}
-.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
-.muted{color:var(--sub);font-size:14px}
-.datebar{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.datebar button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:6px 12px;font-size:18px;cursor:pointer}
+:root{--acc:#e8772e;--acc2:#fff3ea;--ink:#1f1f1f;--sub:#6b6b6b;--line:#ebe5de;--bg:#f7f4f0;--ok:#2f8f5b;--warn:#c0392b;--nav:62px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.5;padding-bottom:calc(var(--nav) + env(safe-area-inset-bottom))}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;padding:8px 14px;padding-top:calc(8px + env(safe-area-inset-top));display:flex;align-items:center;gap:8px}
+header h1{font-size:17px;margin:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+header h1 span{color:var(--acc)}
+select{font-size:15px;padding:5px 6px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+.seg button{border:0;background:#fff;padding:6px 10px;font-size:14px;cursor:pointer;color:var(--sub)}
+.seg button.on{background:var(--acc);color:#fff;font-weight:700}
+nav.bottom{position:fixed;left:0;right:0;bottom:0;height:calc(var(--nav) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:#fff;border-top:1px solid var(--line);display:flex;z-index:10}
+nav.bottom button{flex:1;border:0;background:none;font-size:11.5px;color:var(--sub);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer}
+nav.bottom button i{font-style:normal;font-size:21px;line-height:1}
+nav.bottom button.on{color:var(--acc);font-weight:700}
+main{max-width:860px;margin:0 auto;padding:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+.muted{color:var(--sub);font-size:13.5px}
+h2.sec{font-size:16px;margin:18px 4px 8px}
+.datebar{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.datebar button{border:1px solid var(--line);background:#fff;border-radius:12px;width:44px;height:44px;font-size:20px;cursor:pointer}
 .datebar .d{flex:1;text-align:center}
-.datebar .d b{font-size:22px;display:block}
-.meals{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media(max-width:760px){.meals{grid-template-columns:1fr}}
-.meal h3{margin:0 0 8px;font-size:15px;color:var(--sub);font-weight:600}
-.meal .main{font-size:22px;font-weight:800;margin-bottom:6px}
-.chip{display:inline-block;background:var(--acc2);color:#a24c12;border-radius:999px;padding:3px 10px;font-size:14px;margin:2px 4px 2px 0;cursor:pointer;border:1px solid #f6d6bf}
-.chip.side{background:#f1f5f2;color:#2f6b4a;border-color:#d6e6dc}
+.datebar .d b{font-size:20px;display:block}
+.meals{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:760px){.meals{grid-template-columns:repeat(3,1fr)}}
+.meal h3{margin:0 0 6px;font-size:14px;color:var(--sub);font-weight:600}
+.meal .main{font-size:21px;font-weight:800;margin-bottom:6px}
+.chip{display:inline-block;background:var(--acc2);color:#a24c12;border-radius:999px;padding:5px 12px;font-size:14px;margin:3px 4px 3px 0;cursor:pointer;border:1px solid #f6d6bf}
+.chip.g{background:#f1f5f2;color:#2f6b4a;border-color:#d6e6dc}
+.chip.off{background:#fff;color:var(--sub);border-color:var(--line)}
 .rlink{cursor:pointer;text-decoration:underline;text-decoration-color:#f0b48a;text-underline-offset:4px}
 .todo{border-left:5px solid var(--acc)}
-.todo li{margin:4px 0}
-table{border-collapse:collapse;width:100%}
-.mt{table-layout:fixed}.mt th,.mt td{border:1px solid var(--line);padding:6px;vertical-align:top;font-size:13.5px}
-.mt th{background:#f6f1eb;font-weight:700}
-.mt td.lab{background:#fbf8f4;font-weight:700;white-space:nowrap;width:44px;text-align:center}
-.mt td.today{background:#fff3ea;outline:2px solid var(--acc);outline-offset:-2px}
-.mt .m1{font-weight:700;cursor:pointer}
-.mt .m2{color:var(--sub);font-size:12.5px;cursor:pointer}
-.wk{font-size:16px;margin:18px 0 8px}
-.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
-.rc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer}
-.rc:hover{border-color:var(--acc)}
-.rc b{font-size:17px}
-.tag{font-size:12px;border-radius:6px;padding:1px 6px;margin-left:6px;background:#eee;color:#555}
-.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-.filters input{flex:1;min-width:160px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;font-size:15px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-start;justify-content:center;z-index:20;overflow:auto;padding:20px 10px}
+.todo ul{padding-left:18px;margin:6px 0 0}.todo li{margin:5px 0}
+.weeks{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px}.weeks .chip{white-space:nowrap;flex:none}
+.days{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:760px){.days{grid-template-columns:repeat(2,1fr)}}
+.day{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.day.today{border:2px solid var(--acc);background:#fffaf6}
+.day .dh{display:flex;justify-content:space-between;font-weight:700;margin-bottom:4px}
+.day .row{display:flex;gap:8px;padding:3px 0;font-size:15px}
+.day .row .lb{width:34px;color:var(--sub);font-size:13px;padding-top:2px;flex:none}
+.day .m1{font-weight:700;cursor:pointer}
+.day .m2{color:var(--sub);cursor:pointer;font-size:14px}
+.printonly{display:none}
+.mt{border-collapse:collapse;width:100%;table-layout:fixed}
+.mt th,.mt td{border:1px solid #ccc;padding:4px;vertical-align:top;font-size:12.5px}
+.mt th{background:#f3eee8}
+.mt .m2{color:#555;font-size:11.5px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+.rc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer}
+.rc b{font-size:16px}
+.filters{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px;align-items:center}
+.filters input{flex:1 1 100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:16px;margin-top:4px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center;z-index:30}
 .modal.on{display:flex}
-.mbox{background:#fff;border-radius:16px;max-width:640px;width:100%;padding:20px;position:relative}
-.mbox h2{margin:0 0 4px}
-.x{position:absolute;right:14px;top:10px;font-size:26px;border:0;background:none;cursor:pointer}
-.ing{columns:2;padding-left:18px}
-@media(max-width:520px){.ing{columns:1}}
-.ing li{break-inside:avoid}
-.steps li{margin:8px 0;font-size:17px}
+.mbox{background:#fff;border-radius:18px 18px 0 0;max-width:680px;width:100%;max-height:92vh;overflow:auto;padding:18px 16px calc(24px + env(safe-area-inset-bottom));position:relative}
+@media(min-width:760px){.modal{align-items:center}.mbox{border-radius:18px}}
+.mbox h2{margin:0 36px 2px 0;font-size:22px}
+.x{position:absolute;right:10px;top:8px;font-size:28px;border:0;background:none;cursor:pointer;width:44px;height:44px}
+.ing{padding-left:18px;columns:2;column-gap:18px}
+.ing li{break-inside:avoid;margin:2px 0}
+.steps{padding-left:22px}.steps li{margin:10px 0;font-size:17px}
 .thaw{background:#eef6ff;border:1px solid #cfe3fb;border-radius:10px;padding:8px 10px;font-size:14px;margin:10px 0}
-.ot td,.ot th{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;font-size:14px;vertical-align:middle}
-.ot th{color:var(--sub);font-weight:600;font-size:13px}
-.ot tr.done td{opacity:.45;text-decoration:line-through}
-.ot .num{text-align:right;white-space:nowrap}
-.btn{display:inline-block;background:var(--acc);color:#fff;border-radius:8px;padding:4px 10px;text-decoration:none;font-size:13px;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--acc);color:#fff;border:0;border-radius:10px;padding:8px 12px;text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap;cursor:pointer}
 .btn.ghost{background:#fff;color:var(--acc);border:1px solid var(--acc)}
-.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-@media(max-width:640px){.sum{grid-template-columns:1fr}}
-.big{font-size:28px;font-weight:800}
-.bar{height:12px;background:#eee;border-radius:6px;overflow:hidden}
+.btn.gray{background:#f1eee9;color:#444}
+.btn.big{width:100%;padding:14px;font-size:17px;border-radius:12px}
+.note{background:#fffbe6;border:1px solid #f3e3a1;border-radius:12px;padding:10px 12px;font-size:14px}
+.it{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.it.sel{border-color:#f0b48a;background:#fffaf6}
+.it.zero{opacity:.75}
+.it .top{display:flex;gap:10px;align-items:flex-start}
+.it .top input[type=checkbox]{width:22px;height:22px;margin-top:2px;accent-color:var(--acc);flex:none}
+.it .nm{flex:1;font-weight:700;font-size:15px;line-height:1.35}
+.it .pr{text-align:right;font-weight:700;white-space:nowrap}
+.it .pr small{display:block;font-weight:400;color:var(--sub);font-size:12px}
+.it .bot{display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap}
+.step{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.step button{border:0;background:#f6f2ed;width:34px;height:34px;font-size:20px;cursor:pointer}
+.step input{width:50px;height:34px;border:0;text-align:center;font-size:16px;-moz-appearance:textfield}
+.step input::-webkit-outer-spin-button,.step input::-webkit-inner-spin-button{-webkit-appearance:none}
+.unit{font-size:13px;color:var(--sub);margin-right:4px}
+.need{font-size:13px;color:var(--sub);flex:1 1 100%;order:9}
+.need b{color:var(--ink)}
+.sumbar{position:fixed;left:0;right:0;bottom:calc(var(--nav) + env(safe-area-inset-bottom));background:#2b2622;color:#fff;z-index:9;padding:8px 12px;display:flex;align-items:center;gap:8px}
+.sumbar .t{flex:1;font-size:14px;line-height:1.3}.sumbar .t b{font-size:17px}
+.sumbar .btn.gray{background:#4a433d;color:#fff}
+.pad-sum{height:64px}
+.sum3{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:640px){.sum3{grid-template-columns:repeat(3,1fr)}}
+.big{font-size:27px;font-weight:800}
+.bar{height:10px;background:#eee;border-radius:6px;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--acc)}
 .ok{color:var(--ok)}.warn{color:var(--warn)}
-.bt td{padding:6px 4px;border-bottom:1px solid var(--line);font-size:14px}
-.note{background:#fffbe6;border:1px solid #f3e3a1;border-radius:10px;padding:10px 12px;font-size:14px}
-.printbtn{float:right}
-@media print{header,.noprint,.printbtn{display:none!important}main{padding:0;max-width:none}.card{border:0;padding:0}.mt th,.mt td{font-size:13px;padding:4px}.mt td.lab{width:48px}.wk{margin:6px 0 4px}body{background:#fff}.page{page-break-after:always}}
+.bt{width:100%;border-collapse:collapse}.bt td{padding:6px 2px;border-bottom:1px solid var(--line);font-size:14px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:150px;background:#222;color:#fff;padding:10px 16px;border-radius:12px;z-index:40;font-size:14px;display:none}
+.prog li{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.prog li.done span{text-decoration:line-through;color:var(--sub)}
+.prog{list-style:none;padding:0;margin:8px 0}
+@media print{header,nav.bottom,.sumbar,.noprint{display:none!important}body{background:#fff;padding:0}main{max-width:none;padding:0}.screenonly{display:none!important}.printonly{display:block}.pb{page-break-after:always}.mt th,.mt td{font-size:15px;padding:8px 6px}.mt .m2{font-size:13px}.printonly h3{font-size:20px;margin:6px 0}}
 </style>
 </head>
 <body>
 <header>
-  <div class="top">
-    <h1>글램독 양양 <span>주방 가이드</span></h1>
-    <div class="ctl"><span id="lbl-people">인원</span>
-      <div class="seg" id="people"></div></div>
-    <div class="ctl"><div class="seg" id="lang"><button data-v="ko">한국어</button><button data-v="en">English</button></div></div>
-  </div>
-  <nav id="tabs"></nav>
+  <h1>글램독 양양 <span>주방</span></h1>
+  <select id="people" aria-label="인원"></select>
+  <div class="seg" id="lang"><button data-v="ko">한</button><button data-v="en">EN</button></div>
 </header>
 <main id="view"></main>
+<div id="sumbar"></div>
+<nav class="bottom" id="tabs"></nav>
 <div class="modal" id="modal"><div class="mbox" id="mbox"></div></div>
+<div class="toast" id="toast"></div>
 <script>
-const DATA = {
-anchor: '2026-10-19', // 1주차 월요일
-priceDate: '2026-10-17',
-basePeople: 7,
-breakfast: {
-  A: {ko:'시리얼 + 우유 (+바나나·과일 있으면)', en:'Cereal + milk'},
-  B: {ko:'토스트 + 잼 + 계란후라이 + 우유', en:'Toast + jam + fried egg + milk'}
-},
-// 요일별 아침: 월~일
-breakfastPattern: ['A','B','A','B','A','B','A'],
-// 4주 x 7일 x [점심, 저녁]. 각 끼니 = 레시피 id 배열 (첫 번째가 메인)
-menu: [
-  [ [['kimchibap'],['jeyuk','kongnamulguk']],
-    [['chamchimayo','gyeranguk'],['doenjang','gyeranmari']],
-    [['curry'],['dakbokkeum','cabbagesalad']],
-    [['bibimbap','miyeokguk'],['kimchijjigae','eomukbokkeum']],
-    [['jjajang','gyeranguk'],['bbq','doenjang']],
-    [['tteokbokki'],['bulgogi','miyeokguk']],
-    [['manduguk'],['mapa','gamjabokkeum']] ],
-  [ [['spamegg','miyeokguk'],['jjimdak']],
-    [['bibimbap','eomukguk'],['kimchijjigae','gamjabokkeum']],
-    [['kimchibap'],['jeyuk','kongnamulguk']],
-    [['curry_chicken'],['doenjang','sausage']],
-    [['chamchimayo','eomukguk'],['dakgalbi']],
-    [['budae'],['gyeranmari','eomukbokkeum','kongnamulguk']],
-    [['manduguk'],['bulgogi','cabbagesalad']] ],
-  [ [['bibimbap','miyeokguk'],['kimchisamgyeop','kongnamulguk']],
-    [['spamegg','eomukguk'],['kimchijjigae','gyeranmari']],
-    [['kimchibap'],['dakbokkeum','gamjabokkeum']],
-    [['curry'],['doenjang','eomukbokkeum']],
-    [['chamchimayo','miyeokguk'],['bbq','doenjang']],
-    [['tteokbokki'],['sausage','hobakbokkeum','gyeranguk']],
-    [['jjajang','gyeranguk'],['mapa','cabbagesalad']] ],
-  [ [['kimchibap'],['jeyuk','miyeokguk']],
-    [['bibimbap','eomukguk'],['jjimdak']],
-    [['chamchimayo','gyeranguk'],['kimchijjigae','gamjabokkeum']],
-    [['budae'],['doenjang','gyeranmari']],
-    [['jjajang','kongnamulguk'],['dakgalbi']],
-    [['manduguk'],['kimchijjigae','hobakbokkeum']],
-    [['spamegg','miyeokguk'],['gyeranmari','sausage','eomukguk']] ]
-],
-// 재료 영어명
-en: {'돼지 앞다리 슬라이스':'Sliced pork shoulder','찌개용 돼지고기':'Pork chunks (stew cut)','닭다리살':'Boneless chicken thigh','삼겹살':'Pork belly','돼지 다짐육':'Ground pork',
- '양파':'Onion','양배추':'Cabbage','대파(냉동)':'Green onion (frozen)','당근':'Carrot','감자':'Potato','애호박':'Zucchini','콩나물':'Bean sprouts','두부':'Tofu','김치':'Kimchi',
- '고추장':'Gochujang (red pepper paste)','고춧가루':'Red pepper flakes','간장':'Soy sauce','설탕':'Sugar','다진마늘':'Minced garlic','식용유':'Cooking oil','참기름':'Sesame oil','후추':'Black pepper','소금':'Salt','된장':'Doenjang (soybean paste)','물':'Water',
- '당면':'Glass noodles','떡볶이떡':'Rice cakes (tteok)','카레가루':'Curry powder','짜장가루':'Jjajang powder','밥':'Cooked rice','런천미트':'Luncheon meat (Spam)','계란':'Eggs','참치':'Tuna (can)','마요네즈':'Mayonnaise','김(도시락김)':'Seaweed snack packs',
- '비엔나소시지':'Mini sausages','어묵':'Fish cake','물만두':'Dumplings','감자전분':'Potato starch','쌈장':'Ssamjang (dipping paste)','건미역':'Dried seaweed (miyeok)','라면사리(선택)':'Ramen noodles (optional)'},
-recipes: {
- jeyuk: {ko:'제육볶음', en:'Spicy Pork Stir-fry', type:'main', min:25, thaw:'돼지 앞다리 슬라이스 1.2kg',
-  ing:[['돼지 앞다리 슬라이스',1200,'g'],['양파',2,'개'],['양배추',400,'g'],['대파(냉동)',1,'컵'],['고추장',5,'큰술'],['고춧가루',3,'큰술'],['간장',4,'큰술'],['설탕',3,'큰술'],['다진마늘',2,'큰술'],['식용유',2,'큰술']],
-  ko_steps:['큰 볼에 고기 + 고추장·고춧가루·간장·설탕·마늘을 넣고 손으로 주물러 10분 둔다.','큰 팬(웍)에 기름을 두르고 센 불에서 고기를 7~8분 볶는다.','양파·양배추(한입 크기)를 넣고 5분 더 볶는다.','대파 넣고 1분. 불 끄면 끝.'],
-  en_steps:['Mix pork with gochujang, pepper flakes, soy sauce, sugar and garlic by hand. Rest 10 min.','Heat oil in a big pan/wok. Stir-fry pork on HIGH heat 7-8 min.','Add onion and cabbage (bite size). Stir-fry 5 more min.','Add green onion, 1 min. Turn off heat. Done.']},
- bulgogi: {ko:'간장 돼지불고기', en:'Soy Garlic Pork (Bulgogi)', type:'main', min:25, thaw:'돼지 앞다리 슬라이스 1.2kg',
-  ing:[['돼지 앞다리 슬라이스',1200,'g'],['양파',2,'개'],['당근',0.5,'개'],['대파(냉동)',1,'컵'],['간장',7,'큰술'],['설탕',4,'큰술'],['다진마늘',2,'큰술'],['참기름',2,'큰술'],['후추',0.5,'작은술']],
-  ko_steps:['고기 + 간장·설탕·마늘·참기름·후추를 주물러 10분 둔다.','양파는 굵게 채, 당근은 얇게 썬다.','큰 팬 센 불에서 고기 7분 볶는다 (기름 따로 안 넣어도 됨).','양파·당근 넣고 4분, 대파 넣고 1분. 끝.'],
-  en_steps:['Mix pork with soy sauce, sugar, garlic, sesame oil, pepper. Rest 10 min.','Slice onion thick, carrot thin.','Stir-fry pork on HIGH heat 7 min (no extra oil needed).','Add onion and carrot 4 min, green onion 1 min. Done.']},
- kimchijjigae: {ko:'김치찌개', en:'Kimchi Stew', type:'main', min:30, thaw:'찌개용 돼지고기 400g',
-  ing:[['김치',1000,'g'],['찌개용 돼지고기',400,'g'],['두부',500,'g'],['양파',1,'개'],['대파(냉동)',1,'컵'],['고춧가루',2,'큰술'],['다진마늘',1,'큰술'],['설탕',1,'큰술'],['식용유',1,'큰술'],['물',2,'L']],
-  ko_steps:['큰 냄비에 기름, 고기 넣고 3분 → 김치 넣고 5분 볶는다.','물 2L, 고춧가루·마늘·설탕 넣고 뚜껑 덮고 20분 끓인다.','두부(주사위 크기)·양파 넣고 5분.','대파 넣고 끝. 싱거우면 김치국물이나 소금 조금.'],
-  en_steps:['In a big pot: oil + pork 3 min, then kimchi 5 min.','Add 2L water, pepper flakes, garlic, sugar. Lid on, boil 20 min.','Add tofu (dice) and onion, 5 min.','Add green onion. If bland, add kimchi juice or a little salt.']},
- doenjang: {ko:'된장찌개', en:'Soybean Paste Stew', type:'main', min:25,
-  ing:[['된장',5,'큰술'],['고추장',1,'큰술'],['감자',2,'개'],['애호박',1,'개'],['양파',1,'개'],['두부',500,'g'],['대파(냉동)',1,'컵'],['다진마늘',1,'큰술'],['물',2,'L']],
-  ko_steps:['물 2L에 된장·고추장을 풀고, 깍둑 썬 감자를 넣어 10분 끓인다.','애호박·양파·두부(주사위 크기) 넣고 7분.','마늘·대파 넣고 2분. 끝.'],
-  en_steps:['Dissolve doenjang + gochujang in 2L water. Add diced potato, boil 10 min.','Add zucchini, onion, tofu (dice). 7 min.','Add garlic and green onion, 2 min. Done.']},
- dakbokkeum: {ko:'닭볶음탕', en:'Spicy Braised Chicken', type:'main', min:45, thaw:'닭다리살 1.6kg',
-  ing:[['닭다리살',1600,'g'],['감자',4,'개'],['당근',1,'개'],['양파',2,'개'],['대파(냉동)',1,'컵'],['고추장',4,'큰술'],['고춧가루',4,'큰술'],['간장',6,'큰술'],['설탕',3,'큰술'],['다진마늘',2,'큰술'],['물',1,'L']],
-  ko_steps:['닭은 큼직하게(한입의 2배), 감자·당근도 큼직하게 자른다.','냄비에 닭 + 물 + 양념 모두 넣고 센 불. 끓으면 중불로 15분.','감자·당근 넣고 15분 (감자에 젓가락이 쏙 들어가면 OK).','양파·대파 넣고 5분. 끝.'],
-  en_steps:['Cut chicken big (2 bites), potato and carrot big too.','Pot: chicken + water + all sauce. Boil, then MEDIUM 15 min.','Add potato and carrot, 15 min (chopstick goes in easily = OK).','Add onion and green onion, 5 min. Done.']},
- jjimdak: {ko:'간장찜닭', en:'Soy Braised Chicken & Noodles', type:'main', min:45, thaw:'닭다리살 1.6kg',
-  ing:[['닭다리살',1600,'g'],['감자',3,'개'],['당근',1,'개'],['양파',2,'개'],['당면',200,'g'],['대파(냉동)',1,'컵'],['간장',10,'큰술'],['설탕',5,'큰술'],['다진마늘',2,'큰술'],['참기름',1,'큰술'],['후추',0.5,'작은술'],['물',1.2,'L']],
-  ko_steps:['당면은 찬물에 30분 불려 둔다.','냄비에 닭 + 물 + 간장·설탕·마늘·후추. 끓으면 중불 15분.','감자·당근(큼직하게) 넣고 15분.','양파·불린 당면 넣고 5분 (국물 부족하면 물 조금). 대파·참기름 넣고 끝.'],
-  en_steps:['Soak glass noodles in cold water 30 min.','Pot: chicken + water + soy, sugar, garlic, pepper. Boil, then MEDIUM 15 min.','Add big-cut potato and carrot, 15 min.','Add onion + noodles 5 min (add water if dry). Green onion + sesame oil. Done.']},
- dakgalbi: {ko:'닭갈비', en:'Spicy Chicken & Cabbage', type:'main', min:30, thaw:'닭다리살 1.6kg',
-  ing:[['닭다리살',1600,'g'],['양배추',600,'g'],['양파',2,'개'],['떡볶이떡',200,'g'],['대파(냉동)',1,'컵'],['고추장',5,'큰술'],['고춧가루',2,'큰술'],['간장',4,'큰술'],['설탕',3,'큰술'],['다진마늘',2,'큰술'],['식용유',2,'큰술']],
-  ko_steps:['닭은 한입 크기로 잘라 양념(고추장·고춧가루·간장·설탕·마늘)에 10분 버무린다.','큰 팬에 기름, 닭을 8분 볶는다.','양배추·양파·떡 넣고 뚜껑 덮어 7분 (가끔 저어주기).','대파 넣고 끝. 남은 양념에 밥 볶아 먹어도 OK.'],
-  en_steps:['Cut chicken bite size, mix with sauce (gochujang, flakes, soy, sugar, garlic). 10 min.','Big pan + oil, stir-fry chicken 8 min.','Add cabbage, onion, rice cakes. Lid on 7 min, stir sometimes.','Add green onion. Done. (Fry leftover rice in the sauce - tasty!)']},
- curry: {ko:'카레라이스 (돼지)', en:'Curry Rice (pork)', type:'main', min:35, thaw:'찌개용 돼지고기 450g',
-  ing:[['찌개용 돼지고기',450,'g'],['감자',4,'개'],['당근',1,'개'],['양파',3,'개'],['카레가루',250,'g'],['식용유',2,'큰술'],['물',2.2,'L']],
-  ko_steps:['고기·감자·당근·양파를 주사위 크기로 썬다.','냄비에 기름, 고기 3분 → 채소 넣고 3분 볶는다.','물 넣고 15분 끓인다.','불을 약하게. 카레가루를 찬물 2컵에 풀어 넣고 5분 저어준다 (바닥 안 눌게).'],
-  en_steps:['Dice pork, potato, carrot, onion.','Pot + oil: pork 3 min, then vegetables 3 min.','Add water, boil 15 min.','LOW heat. Mix curry powder in 2 cups cold water, pour in, stir 5 min (don\'t let it burn).']},
- curry_chicken: {ko:'카레라이스 (닭)', en:'Curry Rice (chicken)', type:'main', min:35, thaw:'닭다리살 800g',
-  ing:[['닭다리살',800,'g'],['감자',4,'개'],['당근',1,'개'],['양파',3,'개'],['카레가루',250,'g'],['식용유',2,'큰술'],['물',2.2,'L']],
-  ko_steps:['닭·감자·당근·양파를 주사위 크기로 썬다.','냄비에 기름, 닭 4분 → 채소 넣고 3분 볶는다.','물 넣고 15분 끓인다.','불을 약하게. 카레가루를 찬물 2컵에 풀어 넣고 5분 저어준다.'],
-  en_steps:['Dice chicken, potato, carrot, onion.','Pot + oil: chicken 4 min, vegetables 3 min.','Add water, boil 15 min.','LOW heat. Mix curry powder in 2 cups cold water, pour in, stir 5 min.']},
- jjajang: {ko:'짜장밥', en:'Black Bean Sauce Rice', type:'main', min:35, thaw:'찌개용 돼지고기 300g',
-  ing:[['찌개용 돼지고기',300,'g'],['양파',3,'개'],['감자',2,'개'],['양배추',300,'g'],['짜장가루',250,'g'],['식용유',3,'큰술'],['물',2,'L']],
-  ko_steps:['고기·양파·감자·양배추를 주사위 크기로 썬다.','냄비에 기름, 고기 3분 → 채소 넣고 5분 볶는다.','물 넣고 12분 끓인다.','불을 약하게. 짜장가루를 찬물 2컵에 풀어 넣고 5분 저어준다.'],
-  en_steps:['Dice pork, onion, potato, cabbage.','Pot + oil: pork 3 min, vegetables 5 min.','Add water, boil 12 min.','LOW heat. Mix jjajang powder in 2 cups cold water, pour in, stir 5 min.']},
- kimchibap: {ko:'김치볶음밥 + 계란후라이', en:'Kimchi Fried Rice + Egg', type:'main', min:20,
-  ing:[['밥',7,'공기'],['김치',600,'g'],['런천미트',300,'g'],['대파(냉동)',1,'컵'],['계란',7,'개'],['고춧가루',1,'큰술'],['간장',2,'큰술'],['설탕',1,'큰술'],['참기름',1,'큰술'],['식용유',3,'큰술']],
-  ko_steps:['김치·햄을 잘게 썬다.','큰 팬에 기름 + 대파 1분 → 햄 2분 → 김치·설탕·고춧가루 3분 볶는다.','밥·간장 넣고 5분 골고루 볶는다 (팬이 작으면 2번 나눠서). 참기름 둘러 마무리.','계란후라이 7개 올리면 끝.'],
-  en_steps:['Chop kimchi and ham small.','Big pan + oil: green onion 1 min, ham 2 min, kimchi + sugar + flakes 3 min.','Add rice + soy sauce, mix-fry 5 min (2 batches if pan is small). Sesame oil.','Top with 7 fried eggs. Done.']},
- chamchimayo: {ko:'참치마요덮밥', en:'Tuna Mayo Rice Bowl', type:'main', min:15,
-  ing:[['밥',7,'공기'],['참치',450,'g'],['마요네즈',7,'큰술'],['간장',2,'큰술'],['설탕',1,'큰술'],['계란',7,'개'],['김(도시락김)',4,'봉']],
-  ko_steps:['참치 기름을 꼭 짜고, 마요·간장·설탕과 섞는다.','계란을 풀어 소금 조금, 팬에서 스크램블.','밥 위에 계란 → 참치마요 → 부순 김. 끝.'],
-  en_steps:['Squeeze oil out of tuna. Mix with mayo, soy sauce, sugar.','Beat eggs with a pinch of salt, scramble in a pan.','Rice -> egg -> tuna mayo -> crushed seaweed. Done.']},
- spamegg: {ko:'햄 계란덮밥', en:'Spam & Egg Rice Bowl', type:'main', min:15,
-  ing:[['밥',7,'공기'],['런천미트',450,'g'],['계란',10,'개'],['양파',1,'개'],['간장',4,'큰술'],['설탕',2,'큰술'],['물',100,'ml'],['김(도시락김)',3,'봉']],
-  ko_steps:['햄을 깍둑 썰어 팬에서 노릇하게 5분 굽는다.','양파 넣고 2분 → 간장·설탕·물 넣고 2분.','계란을 풀어 부어 살짝만 익힌다 (1~2분, 너무 젓지 않기).','밥 위에 올리고 김 부숴 올리기.'],
-  en_steps:['Dice ham, pan-fry until golden 5 min.','Add onion 2 min, then soy, sugar, water 2 min.','Pour beaten eggs, cook gently 1-2 min (don\'t over-stir).','Serve on rice, top with crushed seaweed.']},
- budae: {ko:'부대찌개', en:'Army Stew', type:'main', min:25,
-  ing:[['런천미트',400,'g'],['비엔나소시지',300,'g'],['김치',400,'g'],['두부',300,'g'],['양파',1,'개'],['떡볶이떡',300,'g'],['대파(냉동)',1,'컵'],['라면사리(선택)',2,'개'],['고춧가루',3,'큰술'],['고추장',1,'큰술'],['간장',2,'큰술'],['다진마늘',2,'큰술'],['설탕',1,'큰술'],['물',2,'L']],
-  ko_steps:['넓은 냄비에 햄·소시지·김치·두부·양파·떡을 둘러 담는다.','양념을 가운데 올리고 물 2L 붓는다.','센 불에 15분 끓인다. 라면 넣으면 3분 더. 대파 올려 끝.'],
-  en_steps:['Arrange ham, sausage, kimchi, tofu, onion, rice cakes in a wide pot.','Put all sauce in the middle, pour 2L water.','HIGH heat 15 min. Ramen? +3 min. Add green onion. Done.']},
- tteokbokki: {ko:'떡볶이 + 만두', en:'Spicy Rice Cakes + Dumplings', type:'main', min:25,
-  ing:[['떡볶이떡',1200,'g'],['어묵',500,'g'],['양배추',300,'g'],['대파(냉동)',1,'컵'],['계란',7,'개'],['물만두',500,'g'],['고추장',6,'큰술'],['고춧가루',3,'큰술'],['설탕',6,'큰술'],['간장',3,'큰술'],['물',1.2,'L']],
-  ko_steps:['계란은 12분 삶아 껍질 깐다. 떡은 물에 한번 헹군다.','냄비에 물 + 양념 넣고 끓인다.','떡·어묵·양배추 넣고 10분, 계속 저어준다.','계란·대파 넣고 2분. 만두는 전자레인지나 팬에 데워 곁들인다.'],
-  en_steps:['Boil eggs 12 min, peel. Rinse rice cakes.','Pot: water + all sauce, bring to boil.','Add rice cakes, fish cake, cabbage. 10 min, keep stirring.','Add eggs + green onion 2 min. Heat dumplings (microwave/pan) on the side.']},
- manduguk: {ko:'만두국', en:'Dumpling Soup', type:'main', min:20,
-  ing:[['물만두',1000,'g'],['계란',4,'개'],['대파(냉동)',1,'컵'],['간장',3,'큰술'],['다진마늘',1,'큰술'],['소금',1,'작은술'],['물',3,'L'],['김(도시락김)',2,'봉']],
-  ko_steps:['물 3L 끓으면 간장·마늘·소금 넣는다.','만두 넣고, 떠오르면 3분 더.','계란을 풀어 둘러 붓고 젓지 말고 1분. 대파.','그릇에 담고 김 부숴 올리기.'],
-  en_steps:['Boil 3L water, add soy sauce, garlic, salt.','Add dumplings. When they float, 3 more min.','Pour beaten eggs around, DON\'T stir, 1 min. Green onion.','Serve, top with crushed seaweed.']},
- mapa: {ko:'마파두부덮밥', en:'Mapo Tofu Rice', type:'main', min:25, thaw:'돼지 다짐육 500g',
-  ing:[['돼지 다짐육',500,'g'],['두부',1500,'g'],['대파(냉동)',1,'컵'],['다진마늘',2,'큰술'],['고추장',2,'큰술'],['고춧가루',2,'큰술'],['간장',4,'큰술'],['설탕',1,'큰술'],['물',600,'ml'],['감자전분',3,'큰술'],['식용유',3,'큰술']],
-  ko_steps:['두부는 주사위 크기로 썬다. 전분 3큰술을 물 6큰술에 풀어 둔다.','팬에 기름 + 대파·마늘 1분 → 고기 5분 볶는다.','고추장·고춧가루·간장·설탕·물 넣고 끓으면 두부 넣고 5분.','전분물 넣고 저어서 걸쭉해지면(1분) 끝. 밥 위에.'],
-  en_steps:['Dice tofu. Mix 3 Tbsp starch with 6 Tbsp water.','Pan + oil: green onion + garlic 1 min, pork 5 min.','Add gochujang, flakes, soy, sugar, water. Boil, add tofu, 5 min.','Pour starch water, stir until thick (1 min). Serve on rice.']},
- bbq: {ko:'삼겹살 바베큐', en:'Pork Belly BBQ', type:'main', min:40, thaw:'삼겹살 1.8kg',
-  ing:[['삼겹살',1800,'g'],['양배추',300,'g'],['쌈장',1,'통'],['김치',400,'g'],['양파',1,'개'],['소금',1,'작은술'],['후추',0.5,'작은술']],
-  ko_steps:['숯불이나 큰 팬에서 앞뒤 노릇하게 굽는다. 소금·후추.','양배추는 한 장씩 떼어 쌈용으로, 양파는 얇게 썬다.','쌈장·김치와 같이. 김치도 고기 옆에서 구우면 맛있다.','된장찌개를 같이 끓인다.'],
-  en_steps:['Grill on charcoal or a big pan until golden both sides. Salt + pepper.','Cabbage leaves for wraps, slice onion thin.','Serve with ssamjang + kimchi (grill kimchi too!).','Make Doenjang stew on the side.']},
- kimchisamgyeop: {ko:'김치삼겹볶음', en:'Kimchi Pork Belly Stir-fry', type:'main', min:25, thaw:'삼겹살 1.2kg',
-  ing:[['삼겹살',1200,'g'],['김치',800,'g'],['양파',2,'개'],['대파(냉동)',1,'컵'],['고춧가루',1,'큰술'],['설탕',2,'큰술'],['간장',1,'큰술']],
-  ko_steps:['삼겹살을 한입 크기로 잘라 팬에서 7분 굽는다 (기름 많으면 조금 덜어내기).','김치·설탕·고춧가루·간장 넣고 7분 볶는다.','양파 3분, 대파 넣고 끝.'],
-  en_steps:['Cut pork belly bite size, pan-fry 7 min (pour off extra fat).','Add kimchi, sugar, flakes, soy. Stir-fry 7 min.','Onion 3 min, green onion. Done.']},
- bibimbap: {ko:'비빔밥', en:'Bibimbap', type:'main', min:25,
-  ing:[['밥',7,'공기'],['콩나물',500,'g'],['애호박',1,'개'],['당근',0.5,'개'],['계란',7,'개'],['고추장',7,'큰술'],['참기름',3,'큰술'],['소금',1,'작은술'],['식용유',2,'큰술']],
-  ko_steps:['콩나물: 끓는 물에 5분 데쳐 소금·참기름 조금.','애호박·당근은 가늘게 채 썰어 팬에 각각 2분 볶고 소금 조금.','계란후라이 7개.','밥 위에 다 올리고 고추장 1큰술 + 참기름. 각자 비벼 먹기.'],
-  en_steps:['Bean sprouts: boil 5 min, season with salt + sesame oil.','Julienne zucchini and carrot, stir-fry each 2 min with a pinch of salt.','Fry 7 eggs.','Rice + all toppings + 1 Tbsp gochujang + sesame oil. Mix and eat.']},
- kongnamulguk: {ko:'콩나물국', en:'Bean Sprout Soup', type:'soup', min:15,
-  ing:[['콩나물',500,'g'],['다진마늘',1,'큰술'],['간장',2,'큰술'],['소금',1,'작은술'],['대파(냉동)',0.5,'컵'],['물',2.5,'L']],
-  ko_steps:['물 + 콩나물, 뚜껑 덮고 10분 끓인다 (중간에 뚜껑 열지 않기).','마늘·간장·소금 넣고, 대파 넣고 2분. 끝.'],
-  en_steps:['Water + sprouts, lid ON, boil 10 min (don\'t open the lid).','Add garlic, soy sauce, salt, green onion, 2 min. Done.']},
- miyeokguk: {ko:'미역국', en:'Seaweed Soup', type:'soup', min:25,
-  ing:[['건미역',35,'g'],['참기름',2,'큰술'],['간장',3,'큰술'],['다진마늘',1,'큰술'],['소금',1,'작은술'],['물',3,'L']],
-  ko_steps:['미역을 찬물에 20분 불려 꼭 짜고 먹기 좋게 자른다.','냄비에 참기름, 미역 2분 볶는다.','물·간장·마늘 넣고 15분 끓인다. 소금으로 간.'],
-  en_steps:['Soak seaweed in cold water 20 min, squeeze, cut.','Pot + sesame oil, stir seaweed 2 min.','Add water, soy, garlic. Boil 15 min. Salt to taste.']},
- gyeranguk: {ko:'계란국', en:'Egg Drop Soup', type:'soup', min:10,
-  ing:[['계란',5,'개'],['대파(냉동)',1,'컵'],['간장',2,'큰술'],['다진마늘',1,'작은술'],['소금',1,'작은술'],['물',2.5,'L']],
-  ko_steps:['물 끓으면 간장·마늘·소금.','계란 풀어서 둘러 붓고 젓지 말고 1분.','대파 넣고 끝.'],
-  en_steps:['Boil water, add soy, garlic, salt.','Pour beaten eggs around, don\'t stir, 1 min.','Add green onion. Done.']},
- eomukguk: {ko:'어묵국', en:'Fish Cake Soup', type:'soup', min:15,
-  ing:[['어묵',500,'g'],['양파',1,'개'],['대파(냉동)',0.5,'컵'],['간장',3,'큰술'],['다진마늘',1,'작은술'],['후추',0.3,'작은술'],['물',2.5,'L']],
-  ko_steps:['어묵은 한입 크기, 양파는 채 썬다.','물 끓으면 어묵·양파·간장·마늘 넣고 8분.','대파·후추 넣고 끝.'],
-  en_steps:['Cut fish cake bite size, slice onion.','Boil water, add fish cake, onion, soy, garlic. 8 min.','Green onion + pepper. Done.']},
- gyeranmari: {ko:'계란말이', en:'Rolled Omelette', type:'side', min:15,
-  ing:[['계란',10,'개'],['대파(냉동)',0.5,'컵'],['당근',0.3,'개'],['소금',0.5,'작은술'],['식용유',2,'큰술']],
-  ko_steps:['계란 + 소금 + 잘게 썬 대파·당근을 섞는다.','약불 팬에 기름, 계란물 1/3을 얇게 붓고 반쯤 익으면 돌돌 만다.','남은 계란물을 조금씩 부어가며 2~3번 반복.','한 김 식혀서 썬다. (어려우면 그냥 계란 스크램블도 OK)'],
-  en_steps:['Beat eggs with salt, chopped green onion and carrot.','LOW heat, oil, pour 1/3 thin. When half-set, roll it up.','Add more egg next to the roll and repeat 2-3 times.','Cool a bit and slice. (Too hard? Scrambled eggs are fine!)']},
- eomukbokkeum: {ko:'어묵볶음', en:'Stir-fried Fish Cake', type:'side', min:10,
-  ing:[['어묵',500,'g'],['양파',1,'개'],['간장',3,'큰술'],['설탕',2,'큰술'],['물',3,'큰술'],['식용유',2,'큰술'],['참기름',1,'작은술']],
-  ko_steps:['어묵·양파 채 썬다.','팬에 기름, 양파 1분 → 어묵 2분 볶는다.','간장·설탕·물 넣고 2분 졸인다. 참기름.'],
-  en_steps:['Slice fish cake and onion.','Pan + oil: onion 1 min, fish cake 2 min.','Add soy, sugar, water, cook 2 min. Sesame oil.']},
- gamjabokkeum: {ko:'감자볶음', en:'Stir-fried Potato', type:'side', min:15,
-  ing:[['감자',4,'개'],['양파',1,'개'],['당근',0.3,'개'],['소금',1,'작은술'],['후추',0.3,'작은술'],['식용유',3,'큰술']],
-  ko_steps:['감자는 가늘게 채 썰어 찬물에 5분 담갔다 물기 뺀다.','팬에 기름, 감자 6분 볶는다.','양파·당근 넣고 3분, 소금·후추.'],
-  en_steps:['Julienne potatoes, soak in cold water 5 min, drain.','Pan + oil, stir-fry potato 6 min.','Add onion + carrot 3 min. Salt + pepper.']},
- cabbagesalad: {ko:'양배추 샐러드', en:'Cabbage Salad', type:'side', min:10,
-  ing:[['양배추',400,'g'],['당근',0.3,'개'],['마요네즈',5,'큰술'],['설탕',1,'큰술'],['소금',0.5,'작은술']],
-  ko_steps:['양배추·당근을 가늘게 채 썰어 찬물에 헹궈 물기 뺀다.','마요·설탕·소금과 버무린다. 끝.'],
-  en_steps:['Shred cabbage and carrot thin, rinse, drain well.','Mix with mayo, sugar, salt. Done.']},
- hobakbokkeum: {ko:'애호박볶음', en:'Stir-fried Zucchini', type:'side', min:10,
-  ing:[['애호박',2,'개'],['양파',0.5,'개'],['다진마늘',1,'작은술'],['소금',1,'작은술'],['식용유',2,'큰술']],
-  ko_steps:['애호박 반달 모양으로 썬다.','팬에 기름, 마늘·양파 1분 → 애호박 4분.','소금으로 간. 끝.'],
-  en_steps:['Cut zucchini into half-moons.','Pan + oil: garlic + onion 1 min, zucchini 4 min.','Salt. Done.']},
- sausage: {ko:'비엔나 야채볶음', en:'Sausage & Veggie Stir-fry', type:'side', min:10,
-  ing:[['비엔나소시지',500,'g'],['양파',1,'개'],['당근',0.5,'개'],['간장',2,'큰술'],['설탕',1,'큰술'],['식용유',2,'큰술']],
-  ko_steps:['소시지에 칼집, 양파·당근 한입 크기.','팬에 기름, 당근 2분 → 소시지·양파 3분.','간장·설탕 넣고 1분. (케첩 있으면 3큰술 추가)'],
-  en_steps:['Score sausages; cut onion and carrot bite size.','Pan + oil: carrot 2 min, sausage + onion 3 min.','Soy + sugar 1 min. (Ketchup? add 3 Tbsp)']}
-},
-// 주문 목록. m = 한 달 구매 횟수(7명 기준), scale = 인원 따라 늘고 줄음
-order: [
- {g:'2w', cat:'주식', name:'쌀 자연이삭 26년 햅쌀 20kg', price:59500, m:2, scale:true, url:'9383682573?itemId=27860172400', note:'1인 1끼 약 100g'},
- {g:'2w', cat:'계란', name:'계란 무항생제 대란 30구 x5판 (알부자집)', price:35910, m:2, scale:true, url:'9740442568?itemId=29153543536', note:'개당 239원'},
- {g:'2w', cat:'아침', name:'리솔라 멸균우유 1L x18', price:29550, m:2, scale:true, url:'7842509309?itemId=21431624840', note:'평소 사던 우유'},
- {g:'2w', cat:'아침', name:'롯데 아이러브토스트 식빵 750g x5', price:14840, m:2, scale:true, url:'1688623108?itemId=17336429751', note:'받으면 3봉은 냉동실'},
- {g:'2w', cat:'반찬', name:'시원 맛김치(절단) 10kg', price:15600, m:2, scale:true, url:'8243689054?itemId=26309864589', note:'평소 사던 김치'},
- {g:'2w', cat:'고기', name:'돼지 앞다리 제육·불고기용 1kg x3 (냉동)', price:31200, m:2, scale:true, url:'7473472419?itemId=24338668323', note:'제육·불고기'},
- {g:'2w', cat:'고기', name:'돼지 앞다리 찌개용 500g x4 (냉동)', price:17940, m:2, scale:true, url:'8181250303?itemId=26125511265', note:'김치찌개·카레·짜장'},
- {g:'2w', cat:'두부', name:'푸름원 두부 3kg (찌개·부침)', price:6630, m:4, qty:2, scale:true, url:'8243688495?itemId=10165311212', note:'한 번에 2개. 남으면 깍둑 썰어 냉동'},
- {g:'2w', cat:'채소', name:'양파(소) 10kg', price:11980, m:2, scale:true, url:'8677223497?itemId=25190402328'},
- {g:'2w', cat:'채소', name:'깐 양배추 3kg', price:6690, m:2, scale:true, url:'8400816061?itemId=24283677123'},
- {g:'2w', cat:'채소', name:'애호박 10개', price:11900, m:2, scale:true, url:'8854400906?itemId=25815544209'},
- {g:'1m', cat:'고기', name:'브라질 닭다리정육 2kg x6 (냉동 12kg)', price:68000, m:1, scale:true, url:'7690163951?itemId=22524245928', note:'닭볶음탕·찜닭·닭갈비·카레'},
- {g:'1m', cat:'고기', name:'수입 냉동 삼겹살 구이용 5kg', price:54500, m:1, scale:true, url:'9528492146?itemId=28413466824', note:'바베큐 2번 + 김치삼겹'},
- {g:'1m', cat:'고기', name:'한돈 뒷다리 다짐육 1kg (냉동)', price:10000, m:1, scale:true, url:'8064979205?itemId=22679867701', note:'마파두부'},
- {g:'1m', cat:'가공', name:'롯데 런천미트 1.8kg x2', price:22420, m:1, scale:true, url:'7338080330?itemId=7389691710'},
- {g:'1m', cat:'가공', name:'하림 요리비엔나 1kg x2', price:13450, m:1, scale:true, url:'1353234056?itemId=19145231474'},
- {g:'1m', cat:'가공', name:'동원참치 덕용 1.88kg', price:17690, m:1, scale:true, url:'9392677909?itemId=28056683384'},
- {g:'1m', cat:'가공', name:'부산진어묵 사각 2.8kg x2', price:24640, m:1, scale:true, url:'7249338474?itemId=21715497494', note:'받으면 소분 냉동'},
- {g:'1m', cat:'가공', name:'CJ 이츠웰 물만두 1.5kg', price:13350, m:3, qty:3, scale:true, url:'5786561988?itemId=9875978466'},
- {g:'1m', cat:'가공', name:'떡볶이떡(별대) 3.6kg', price:10500, m:1, scale:true, url:'1883753344?itemId=14724844328', note:'소분 냉동'},
- {g:'1m', cat:'아침', name:'콘푸로스트 1.32kg x3', price:26250, m:1, scale:true, url:'6590520242?itemId=513906307'},
- {g:'1m', cat:'아침', name:'오곡 코코볼 1kg', price:7920, m:1, scale:true, url:'7839277281?itemId=20635853301'},
- {g:'1m', cat:'아침', name:'초록원 딸기잼+블루베리잼 1kg 세트', price:14700, m:1, scale:true, url:'6167586589?itemId=24617013785'},
- {g:'1m', cat:'채소', name:'강원 수미감자 10kg', price:16900, m:1, scale:true, url:'8802272872?itemId=28895866190'},
- {g:'1m', cat:'채소', name:'세척당근 5kg', price:8970, m:1, scale:true, url:'9061184554?itemId=26613805448'},
- {g:'1m', cat:'채소', name:'냉동 대파 슬라이스 1kg x3', price:9760, m:1, scale:true, url:'8053963592?itemId=27586206945'},
- {g:'1m', cat:'반찬', name:'광천김 도시락김 5g x64', price:17980, m:1, scale:true, url:'7186022517?itemId=25651782440'},
- {g:'1m', cat:'양념', name:'해표 콩기름 1.8L x2', price:10560, m:1, scale:false, url:'487322?itemId=231349355'},
- {g:'1m', cat:'양념', name:'백설 하얀설탕 3kg', price:6340, m:1, scale:false, url:'7143767691?itemId=15326731304'},
- {g:'1m', cat:'양념', name:'오뚜기 카레 과립 약간매운맛 1kg', price:7400, m:1, scale:true, url:'2664561?itemId=18728028084'},
- {g:'ask', cat:'양념', name:'오뚜기 짜장 과립 1kg', price:9460, m:0.8, scale:true, url:'7553233653?itemId=20382169912'},
- {g:'ask', cat:'양념', name:'냉동 다진마늘 1kg x3', price:12230, m:0.5, scale:false, url:'8248666796?itemId=22877342434'},
- {g:'ask', cat:'양념', name:'해찬들 태양초 알찬고추장 6.5kg', price:21880, m:0.4, scale:false, url:'9192482733?itemId=15784605676'},
- {g:'ask', cat:'양념', name:'청정원 쉐프원 진간장 13L', price:18820, m:0.3, scale:false, url:'7196421572?itemId=19120575108'},
- {g:'ask', cat:'양념', name:'곰곰 고춧가루 1kg', price:11780, m:0.6, scale:false, url:'9223028235?itemId=23036516271'},
- {g:'ask', cat:'양념', name:'해표 재래식압착 참기름 1.8L', price:19300, m:0.4, scale:false, url:'4989760?itemId=22757222'},
- {g:'ask', cat:'양념', name:'청정원순창 재래식 생된장 2.8kg', price:10980, m:0.5, scale:false, url:'8254864471?itemId=19139549062'},
- {g:'ask', cat:'양념', name:'오뚜기 골드 마요네즈 3.2kg', price:13220, m:0.5, scale:false, url:'5876698423?itemId=10297009191'},
- {g:'ask', cat:'양념', name:'해찬들 사계절 쌈장 170g x6', price:6420, m:0.5, scale:false, url:'46328?itemId=18171054566'},
- {g:'1m', cat:'반찬', name:'오뚜기 옛날 자른미역 50g x5', price:11400, m:1, scale:false, url:'1008978?itemId=16303927277'},
- {g:'ask', cat:'양념', name:'해표 쫄깃한 당면 1kg', price:5860, m:0.4, scale:false, url:'413282?itemId=1075828'},
- {g:'ask', cat:'양념', name:'해표 꽃소금 3kg', price:5280, m:0.2, scale:false, url:'7427535576?itemId=19283380567'},
- {g:'ask', cat:'양념', name:'오뚜기 오쉐프 순후추 450g', price:9400, m:0.2, scale:false, url:'9751767394?itemId=29200178440'},
- {g:'ask', cat:'양념', name:'농부의뜰 감자전분 1kg', price:3800, m:0.2, scale:false, url:'8288554606?itemId=22230608162'},
- {g:'local', cat:'채소', name:'콩나물 (매주 1kg 정도)', price:3000, m:5, scale:true, url:'', note:'양양 마트. 쿠팡은 오래 걸려 시들어요'},
- {g:'local', cat:'채소', name:'상추·깻잎 (바베큐 하는 날)', price:5000, m:2, scale:true, url:'', note:'없으면 양배추 쌈으로'}
-]
-};
-
-const S={people:+(localStorage.gd_people||7),lang:localStorage.gd_lang||'ko',tab:'today',day:new Date(),rf:'all',q:''};
-const T={ko:{today:'오늘 메뉴',menu:'4주 식단표',recipes:'레시피',order:'쿠팡 주문표',budget:'예산',bf:'아침',lunch:'점심',dinner:'저녁',week:'주차',days:['월','화','수','목','금','토','일'],people:'인원',tonight:'오늘 할 일',thaw:'해동: 내일 쓸 고기를 오늘 밤 냉동실 → 냉장실로 옮기기',nothaw:'내일은 해동할 고기가 없어요.',rice:'밥 짓기: 점심·저녁 각각 쌀 약 {r}컵(종이컵) = {g}g',ing:'재료',steps:'만드는 법',min:'분',main:'메인',soup:'국',side:'반찬',all:'전체',search:'메뉴 검색',servings:'{n}인분',spoon:'1큰술 = 밥숟가락 가득 1번 · 1작은술 = 찻숟가락 1번 · 1컵 = 종이컵 1컵(180ml)',orderday:'오늘은 쿠팡 주문하는 날이에요 → "쿠팡 주문표" 탭',thawtitle:'해동',print:'인쇄'},
- en:{today:'Today',menu:'4-Week Menu',recipes:'Recipes',order:'Coupang Order',budget:'Budget',bf:'Breakfast',lunch:'Lunch',dinner:'Dinner',week:'Week',days:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],people:'People',tonight:'To-do today',thaw:'Thaw: move tomorrow\'s meat from FREEZER to FRIDGE tonight',nothaw:'No meat to thaw for tomorrow.',rice:'Rice: about {r} paper cups ({g}g) of raw rice for lunch and again for dinner',ing:'Ingredients',steps:'How to cook',min:'min',main:'Main',soup:'Soup',side:'Side',all:'All',search:'Search menu',servings:'{n} servings',spoon:'1 Tbsp = 1 heaping rice spoon · 1 tsp = 1 teaspoon · 1 cup = 1 paper cup (180ml)',orderday:'Today is Coupang order day (see Coupang Order tab)',thawtitle:'Thaw',print:'Print'}};
+const DATA = {"anchor":"2026-10-19","priceDate":"2026-10-17","basePeople":7,"breakfast":{"A":{"ko":"시리얼 + 우유 (+바나나·과일 있으면)","en":"Cereal + milk"},"B":{"ko":"토스트 + 잼 + 계란후라이 + 우유","en":"Toast + jam + fried egg + milk"}},"breakfastPattern":["A","B","A","B","A","B","A"],"menu":[[[["kimchibap"],["jeyuk","kongnamulguk"]],[["chamchimayo","gyeranguk"],["doenjang","gyeranmari"]],[["curry"],["dakbokkeum","cabbagesalad"]],[["bibimbap","miyeokguk"],["kimchijjigae","eomukbokkeum"]],[["jjajang","gyeranguk"],["bbq","doenjang"]],[["tteokbokki"],["bulgogi","miyeokguk"]],[["manduguk"],["mapa","gamjabokkeum"]]],[[["spamegg","miyeokguk"],["jjimdak"]],[["bibimbap","eomukguk"],["kimchijjigae","gamjabokkeum"]],[["kimchibap"],["jeyuk","kongnamulguk"]],[["curry_chicken"],["doenjang","sausage"]],[["chamchimayo","eomukguk"],["dakgalbi"]],[["budae"],["gyeranmari","eomukbokkeum","kongnamulguk"]],[["manduguk"],["bulgogi","cabbagesalad"]]],[[["bibimbap","miyeokguk"],["kimchisamgyeop","kongnamulguk"]],[["spamegg","eomukguk"],["kimchijjigae","gyeranmari"]],[["kimchibap"],["dakbokkeum","gamjabokkeum"]],[["curry"],["doenjang","eomukbokkeum"]],[["chamchimayo","miyeokguk"],["bbq","doenjang"]],[["tteokbokki"],["sausage","hobakbokkeum","gyeranguk"]],[["jjajang","gyeranguk"],["mapa","cabbagesalad"]]],[[["kimchibap"],["jeyuk","miyeokguk"]],[["bibimbap","eomukguk"],["jjimdak"]],[["chamchimayo","gyeranguk"],["kimchijjigae","gamjabokkeum"]],[["budae"],["doenjang","gyeranmari"]],[["jjajang","kongnamulguk"],["dakgalbi"]],[["manduguk"],["kimchijjigae","hobakbokkeum"]],[["spamegg","miyeokguk"],["gyeranmari","sausage","eomukguk"]]]],"en":{"돼지 앞다리 슬라이스":"Sliced pork shoulder","찌개용 돼지고기":"Pork chunks (stew cut)","닭다리살":"Boneless chicken thigh","삼겹살":"Pork belly","돼지 다짐육":"Ground pork","양파":"Onion","양배추":"Cabbage","대파(냉동)":"Green onion (frozen)","당근":"Carrot","감자":"Potato","애호박":"Zucchini","콩나물":"Bean sprouts","두부":"Tofu","김치":"Kimchi","고추장":"Gochujang (red pepper paste)","고춧가루":"Red pepper flakes","간장":"Soy sauce","설탕":"Sugar","다진마늘":"Minced garlic","식용유":"Cooking oil","참기름":"Sesame oil","후추":"Black pepper","소금":"Salt","된장":"Doenjang (soybean paste)","물":"Water","당면":"Glass noodles","떡볶이떡":"Rice cakes (tteok)","카레가루":"Curry powder","짜장가루":"Jjajang powder","밥":"Cooked rice","런천미트":"Luncheon meat (Spam)","계란":"Eggs","참치":"Tuna (can)","마요네즈":"Mayonnaise","김(도시락김)":"Seaweed snack packs","비엔나소시지":"Mini sausages","어묵":"Fish cake","물만두":"Dumplings","감자전분":"Potato starch","쌈장":"Ssamjang (dipping paste)","건미역":"Dried seaweed (miyeok)","라면사리(선택)":"Ramen noodles (optional)","물만두(선택)":"Dumplings (optional)"},"recipes":{"jeyuk":{"ko":"제육볶음","en":"Spicy Pork Stir-fry","type":"main","min":25,"thaw":"돼지 앞다리 슬라이스 1.2kg","ing":[["돼지 앞다리 슬라이스",1200,"g"],["양파",2,"개"],["양배추",400,"g"],["대파(냉동)",1,"컵"],["고추장",5,"큰술"],["고춧가루",3,"큰술"],["간장",4,"큰술"],["설탕",3,"큰술"],["다진마늘",2,"큰술"],["식용유",2,"큰술"]],"ko_steps":["큰 볼에 고기 + 고추장·고춧가루·간장·설탕·마늘을 넣고 손으로 주물러 10분 둔다.","큰 팬(웍)에 기름을 두르고 센 불에서 고기를 7~8분 볶는다.","양파·양배추(한입 크기)를 넣고 5분 더 볶는다.","대파 넣고 1분. 불 끄면 끝."],"en_steps":["Mix pork with gochujang, pepper flakes, soy sauce, sugar and garlic by hand. Rest 10 min.","Heat oil in a big pan/wok. Stir-fry pork on HIGH heat 7-8 min.","Add onion and cabbage (bite size). Stir-fry 5 more min.","Add green onion, 1 min. Turn off heat. Done."]},"bulgogi":{"ko":"간장 돼지불고기","en":"Soy Garlic Pork (Bulgogi)","type":"main","min":25,"thaw":"돼지 앞다리 슬라이스 1.2kg","ing":[["돼지 앞다리 슬라이스",1200,"g"],["양파",2,"개"],["당근",0.5,"개"],["대파(냉동)",1,"컵"],["간장",7,"큰술"],["설탕",4,"큰술"],["다진마늘",2,"큰술"],["참기름",2,"큰술"],["후추",0.5,"작은술"]],"ko_steps":["고기 + 간장·설탕·마늘·참기름·후추를 주물러 10분 둔다.","양파는 굵게 채, 당근은 얇게 썬다.","큰 팬 센 불에서 고기 7분 볶는다 (기름 따로 안 넣어도 됨).","양파·당근 넣고 4분, 대파 넣고 1분. 끝."],"en_steps":["Mix pork with soy sauce, sugar, garlic, sesame oil, pepper. Rest 10 min.","Slice onion thick, carrot thin.","Stir-fry pork on HIGH heat 7 min (no extra oil needed).","Add onion and carrot 4 min, green onion 1 min. Done."]},"kimchijjigae":{"ko":"김치찌개","en":"Kimchi Stew","type":"main","min":30,"thaw":"찌개용 돼지고기 400g","ing":[["김치",1000,"g"],["찌개용 돼지고기",400,"g"],["두부",500,"g"],["양파",1,"개"],["대파(냉동)",1,"컵"],["고춧가루",2,"큰술"],["다진마늘",1,"큰술"],["설탕",1,"큰술"],["식용유",1,"큰술"],["물",2,"L"]],"ko_steps":["큰 냄비에 기름, 고기 넣고 3분 → 김치 넣고 5분 볶는다.","물 2L, 고춧가루·마늘·설탕 넣고 뚜껑 덮고 20분 끓인다.","두부(주사위 크기)·양파 넣고 5분.","대파 넣고 끝. 싱거우면 김치국물이나 소금 조금."],"en_steps":["In a big pot: oil + pork 3 min, then kimchi 5 min.","Add 2L water, pepper flakes, garlic, sugar. Lid on, boil 20 min.","Add tofu (dice) and onion, 5 min.","Add green onion. If bland, add kimchi juice or a little salt."]},"doenjang":{"ko":"된장찌개","en":"Soybean Paste Stew","type":"main","min":25,"ing":[["된장",5,"큰술"],["고추장",1,"큰술"],["감자",2,"개"],["애호박",1,"개"],["양파",1,"개"],["두부",500,"g"],["대파(냉동)",1,"컵"],["다진마늘",1,"큰술"],["물",2,"L"]],"ko_steps":["물 2L에 된장·고추장을 풀고, 깍둑 썬 감자를 넣어 10분 끓인다.","애호박·양파·두부(주사위 크기) 넣고 7분.","마늘·대파 넣고 2분. 끝."],"en_steps":["Dissolve doenjang + gochujang in 2L water. Add diced potato, boil 10 min.","Add zucchini, onion, tofu (dice). 7 min.","Add garlic and green onion, 2 min. Done."]},"dakbokkeum":{"ko":"닭볶음탕","en":"Spicy Braised Chicken","type":"main","min":45,"thaw":"닭다리살 1.6kg","ing":[["닭다리살",1600,"g"],["감자",4,"개"],["당근",1,"개"],["양파",2,"개"],["대파(냉동)",1,"컵"],["고추장",4,"큰술"],["고춧가루",4,"큰술"],["간장",6,"큰술"],["설탕",3,"큰술"],["다진마늘",2,"큰술"],["물",1,"L"]],"ko_steps":["닭은 큼직하게(한입의 2배), 감자·당근도 큼직하게 자른다.","냄비에 닭 + 물 + 양념 모두 넣고 센 불. 끓으면 중불로 15분.","감자·당근 넣고 15분 (감자에 젓가락이 쏙 들어가면 OK).","양파·대파 넣고 5분. 끝."],"en_steps":["Cut chicken big (2 bites), potato and carrot big too.","Pot: chicken + water + all sauce. Boil, then MEDIUM 15 min.","Add potato and carrot, 15 min (chopstick goes in easily = OK).","Add onion and green onion, 5 min. Done."]},"jjimdak":{"ko":"간장찜닭","en":"Soy Braised Chicken & Noodles","type":"main","min":45,"thaw":"닭다리살 1.6kg","ing":[["닭다리살",1600,"g"],["감자",3,"개"],["당근",1,"개"],["양파",2,"개"],["당면",200,"g"],["대파(냉동)",1,"컵"],["간장",10,"큰술"],["설탕",5,"큰술"],["다진마늘",2,"큰술"],["참기름",1,"큰술"],["후추",0.5,"작은술"],["물",1.2,"L"]],"ko_steps":["당면은 찬물에 30분 불려 둔다.","냄비에 닭 + 물 + 간장·설탕·마늘·후추. 끓으면 중불 15분.","감자·당근(큼직하게) 넣고 15분.","양파·불린 당면 넣고 5분 (국물 부족하면 물 조금). 대파·참기름 넣고 끝."],"en_steps":["Soak glass noodles in cold water 30 min.","Pot: chicken + water + soy, sugar, garlic, pepper. Boil, then MEDIUM 15 min.","Add big-cut potato and carrot, 15 min.","Add onion + noodles 5 min (add water if dry). Green onion + sesame oil. Done."]},"dakgalbi":{"ko":"닭갈비","en":"Spicy Chicken & Cabbage","type":"main","min":30,"thaw":"닭다리살 1.6kg","ing":[["닭다리살",1600,"g"],["양배추",600,"g"],["양파",2,"개"],["떡볶이떡",200,"g"],["대파(냉동)",1,"컵"],["고추장",5,"큰술"],["고춧가루",2,"큰술"],["간장",4,"큰술"],["설탕",3,"큰술"],["다진마늘",2,"큰술"],["식용유",2,"큰술"]],"ko_steps":["닭은 한입 크기로 잘라 양념(고추장·고춧가루·간장·설탕·마늘)에 10분 버무린다.","큰 팬에 기름, 닭을 8분 볶는다.","양배추·양파·떡 넣고 뚜껑 덮어 7분 (가끔 저어주기).","대파 넣고 끝. 남은 양념에 밥 볶아 먹어도 OK."],"en_steps":["Cut chicken bite size, mix with sauce (gochujang, flakes, soy, sugar, garlic). 10 min.","Big pan + oil, stir-fry chicken 8 min.","Add cabbage, onion, rice cakes. Lid on 7 min, stir sometimes.","Add green onion. Done. (Fry leftover rice in the sauce - tasty!)"]},"curry":{"ko":"카레라이스 (돼지)","en":"Curry Rice (pork)","type":"main","min":35,"thaw":"찌개용 돼지고기 450g","ing":[["찌개용 돼지고기",450,"g"],["감자",4,"개"],["당근",1,"개"],["양파",3,"개"],["카레가루",250,"g"],["식용유",2,"큰술"],["물",2.2,"L"]],"ko_steps":["고기·감자·당근·양파를 주사위 크기로 썬다.","냄비에 기름, 고기 3분 → 채소 넣고 3분 볶는다.","물 넣고 15분 끓인다.","불을 약하게. 카레가루를 찬물 2컵에 풀어 넣고 5분 저어준다 (바닥 안 눌게)."],"en_steps":["Dice pork, potato, carrot, onion.","Pot + oil: pork 3 min, then vegetables 3 min.","Add water, boil 15 min.","LOW heat. Mix curry powder in 2 cups cold water, pour in, stir 5 min (don't let it burn)."]},"curry_chicken":{"ko":"카레라이스 (닭)","en":"Curry Rice (chicken)","type":"main","min":35,"thaw":"닭다리살 800g","ing":[["닭다리살",800,"g"],["감자",4,"개"],["당근",1,"개"],["양파",3,"개"],["카레가루",250,"g"],["식용유",2,"큰술"],["물",2.2,"L"]],"ko_steps":["닭·감자·당근·양파를 주사위 크기로 썬다.","냄비에 기름, 닭 4분 → 채소 넣고 3분 볶는다.","물 넣고 15분 끓인다.","불을 약하게. 카레가루를 찬물 2컵에 풀어 넣고 5분 저어준다."],"en_steps":["Dice chicken, potato, carrot, onion.","Pot + oil: chicken 4 min, vegetables 3 min.","Add water, boil 15 min.","LOW heat. Mix curry powder in 2 cups cold water, pour in, stir 5 min."]},"jjajang":{"ko":"짜장밥","en":"Black Bean Sauce Rice","type":"main","min":35,"thaw":"찌개용 돼지고기 300g","ing":[["찌개용 돼지고기",300,"g"],["양파",3,"개"],["감자",2,"개"],["양배추",300,"g"],["짜장가루",250,"g"],["식용유",3,"큰술"],["물",2,"L"]],"ko_steps":["고기·양파·감자·양배추를 주사위 크기로 썬다.","냄비에 기름, 고기 3분 → 채소 넣고 5분 볶는다.","물 넣고 12분 끓인다.","불을 약하게. 짜장가루를 찬물 2컵에 풀어 넣고 5분 저어준다."],"en_steps":["Dice pork, onion, potato, cabbage.","Pot + oil: pork 3 min, vegetables 5 min.","Add water, boil 12 min.","LOW heat. Mix jjajang powder in 2 cups cold water, pour in, stir 5 min."]},"kimchibap":{"ko":"김치볶음밥 + 계란후라이","en":"Kimchi Fried Rice + Egg","type":"main","min":20,"ing":[["밥",7,"공기"],["김치",600,"g"],["런천미트",300,"g"],["대파(냉동)",1,"컵"],["계란",7,"개"],["고춧가루",1,"큰술"],["간장",2,"큰술"],["설탕",1,"큰술"],["참기름",1,"큰술"],["식용유",3,"큰술"]],"ko_steps":["김치·햄을 잘게 썬다.","큰 팬에 기름 + 대파 1분 → 햄 2분 → 김치·설탕·고춧가루 3분 볶는다.","밥·간장 넣고 5분 골고루 볶는다 (팬이 작으면 2번 나눠서). 참기름 둘러 마무리.","계란후라이 7개 올리면 끝."],"en_steps":["Chop kimchi and ham small.","Big pan + oil: green onion 1 min, ham 2 min, kimchi + sugar + flakes 3 min.","Add rice + soy sauce, mix-fry 5 min (2 batches if pan is small). Sesame oil.","Top with 7 fried eggs. Done."]},"chamchimayo":{"ko":"참치마요덮밥","en":"Tuna Mayo Rice Bowl","type":"main","min":15,"ing":[["밥",7,"공기"],["참치",450,"g"],["마요네즈",7,"큰술"],["간장",2,"큰술"],["설탕",1,"큰술"],["계란",7,"개"],["김(도시락김)",4,"봉"]],"ko_steps":["참치 기름을 꼭 짜고, 마요·간장·설탕과 섞는다.","계란을 풀어 소금 조금, 팬에서 스크램블.","밥 위에 계란 → 참치마요 → 부순 김. 끝."],"en_steps":["Squeeze oil out of tuna. Mix with mayo, soy sauce, sugar.","Beat eggs with a pinch of salt, scramble in a pan.","Rice -> egg -> tuna mayo -> crushed seaweed. Done."]},"spamegg":{"ko":"햄 계란덮밥","en":"Spam & Egg Rice Bowl","type":"main","min":15,"ing":[["밥",7,"공기"],["런천미트",450,"g"],["계란",10,"개"],["양파",1,"개"],["간장",4,"큰술"],["설탕",2,"큰술"],["물",100,"ml"],["김(도시락김)",3,"봉"]],"ko_steps":["햄을 깍둑 썰어 팬에서 노릇하게 5분 굽는다.","양파 넣고 2분 → 간장·설탕·물 넣고 2분.","계란을 풀어 부어 살짝만 익힌다 (1~2분, 너무 젓지 않기).","밥 위에 올리고 김 부숴 올리기."],"en_steps":["Dice ham, pan-fry until golden 5 min.","Add onion 2 min, then soy, sugar, water 2 min.","Pour beaten eggs, cook gently 1-2 min (don't over-stir).","Serve on rice, top with crushed seaweed."]},"budae":{"ko":"부대찌개","en":"Army Stew","type":"main","min":25,"ing":[["런천미트",400,"g"],["비엔나소시지",300,"g"],["김치",400,"g"],["두부",300,"g"],["양파",1,"개"],["떡볶이떡",300,"g"],["대파(냉동)",1,"컵"],["라면사리(선택)",2,"개"],["고춧가루",3,"큰술"],["고추장",1,"큰술"],["간장",2,"큰술"],["다진마늘",2,"큰술"],["설탕",1,"큰술"],["물",2,"L"]],"ko_steps":["넓은 냄비에 햄·소시지·김치·두부·양파·떡을 둘러 담는다.","양념을 가운데 올리고 물 2L 붓는다.","센 불에 15분 끓인다. 라면 넣으면 3분 더. 대파 올려 끝."],"en_steps":["Arrange ham, sausage, kimchi, tofu, onion, rice cakes in a wide pot.","Put all sauce in the middle, pour 2L water.","HIGH heat 15 min. Ramen? +3 min. Add green onion. Done."]},"tteokbokki":{"ko":"떡볶이 + 만두","en":"Spicy Rice Cakes + Dumplings","type":"main","min":25,"ing":[["떡볶이떡",1200,"g"],["어묵",500,"g"],["양배추",300,"g"],["대파(냉동)",1,"컵"],["계란",7,"개"],["물만두(선택)",300,"g"],["고추장",6,"큰술"],["고춧가루",3,"큰술"],["설탕",6,"큰술"],["간장",3,"큰술"],["물",1.2,"L"]],"ko_steps":["계란은 12분 삶아 껍질 깐다. 떡은 물에 한번 헹군다.","냄비에 물 + 양념 넣고 끓인다.","떡·어묵·양배추 넣고 10분, 계속 저어준다.","계란·대파 넣고 2분. 만두가 있으면 데워서 곁들인다."],"en_steps":["Boil eggs 12 min, peel. Rinse rice cakes.","Pot: water + all sauce, bring to boil.","Add rice cakes, fish cake, cabbage. 10 min, keep stirring.","Add eggs + green onion 2 min. Dumplings on the side if you have them."]},"manduguk":{"ko":"만두국","en":"Dumpling Soup","type":"main","min":20,"ing":[["물만두",1000,"g"],["계란",4,"개"],["대파(냉동)",1,"컵"],["간장",3,"큰술"],["다진마늘",1,"큰술"],["소금",1,"작은술"],["물",3,"L"],["김(도시락김)",2,"봉"]],"ko_steps":["물 3L 끓으면 간장·마늘·소금 넣는다.","만두 넣고, 떠오르면 3분 더.","계란을 풀어 둘러 붓고 젓지 말고 1분. 대파.","그릇에 담고 김 부숴 올리기."],"en_steps":["Boil 3L water, add soy sauce, garlic, salt.","Add dumplings. When they float, 3 more min.","Pour beaten eggs around, DON'T stir, 1 min. Green onion.","Serve, top with crushed seaweed."]},"mapa":{"ko":"마파두부덮밥","en":"Mapo Tofu Rice","type":"main","min":25,"thaw":"돼지 다짐육 500g","ing":[["돼지 다짐육",500,"g"],["두부",1500,"g"],["대파(냉동)",1,"컵"],["다진마늘",2,"큰술"],["고추장",2,"큰술"],["고춧가루",2,"큰술"],["간장",4,"큰술"],["설탕",1,"큰술"],["물",600,"ml"],["감자전분",3,"큰술"],["식용유",3,"큰술"]],"ko_steps":["두부는 주사위 크기로 썬다. 전분 3큰술을 물 6큰술에 풀어 둔다.","팬에 기름 + 대파·마늘 1분 → 고기 5분 볶는다.","고추장·고춧가루·간장·설탕·물 넣고 끓으면 두부 넣고 5분.","전분물 넣고 저어서 걸쭉해지면(1분) 끝. 밥 위에."],"en_steps":["Dice tofu. Mix 3 Tbsp starch with 6 Tbsp water.","Pan + oil: green onion + garlic 1 min, pork 5 min.","Add gochujang, flakes, soy, sugar, water. Boil, add tofu, 5 min.","Pour starch water, stir until thick (1 min). Serve on rice."]},"bbq":{"ko":"삼겹살 바베큐","en":"Pork Belly BBQ","type":"main","min":40,"thaw":"삼겹살 1.8kg","ing":[["삼겹살",1800,"g"],["양배추",300,"g"],["쌈장",1,"통"],["김치",400,"g"],["양파",1,"개"],["소금",1,"작은술"],["후추",0.5,"작은술"]],"ko_steps":["숯불이나 큰 팬에서 앞뒤 노릇하게 굽는다. 소금·후추.","양배추는 한 장씩 떼어 쌈용으로, 양파는 얇게 썬다.","쌈장·김치와 같이. 김치도 고기 옆에서 구우면 맛있다.","된장찌개를 같이 끓인다."],"en_steps":["Grill on charcoal or a big pan until golden both sides. Salt + pepper.","Cabbage leaves for wraps, slice onion thin.","Serve with ssamjang + kimchi (grill kimchi too!).","Make Doenjang stew on the side."]},"kimchisamgyeop":{"ko":"김치삼겹볶음","en":"Kimchi Pork Belly Stir-fry","type":"main","min":25,"thaw":"삼겹살 1.2kg","ing":[["삼겹살",1200,"g"],["김치",800,"g"],["양파",2,"개"],["대파(냉동)",1,"컵"],["고춧가루",1,"큰술"],["설탕",2,"큰술"],["간장",1,"큰술"]],"ko_steps":["삼겹살을 한입 크기로 잘라 팬에서 7분 굽는다 (기름 많으면 조금 덜어내기).","김치·설탕·고춧가루·간장 넣고 7분 볶는다.","양파 3분, 대파 넣고 끝."],"en_steps":["Cut pork belly bite size, pan-fry 7 min (pour off extra fat).","Add kimchi, sugar, flakes, soy. Stir-fry 7 min.","Onion 3 min, green onion. Done."]},"bibimbap":{"ko":"비빔밥","en":"Bibimbap","type":"main","min":25,"ing":[["밥",7,"공기"],["콩나물",500,"g"],["애호박",1,"개"],["당근",0.5,"개"],["계란",7,"개"],["고추장",7,"큰술"],["참기름",3,"큰술"],["소금",1,"작은술"],["식용유",2,"큰술"]],"ko_steps":["콩나물: 끓는 물에 5분 데쳐 소금·참기름 조금.","애호박·당근은 가늘게 채 썰어 팬에 각각 2분 볶고 소금 조금.","계란후라이 7개.","밥 위에 다 올리고 고추장 1큰술 + 참기름. 각자 비벼 먹기."],"en_steps":["Bean sprouts: boil 5 min, season with salt + sesame oil.","Julienne zucchini and carrot, stir-fry each 2 min with a pinch of salt.","Fry 7 eggs.","Rice + all toppings + 1 Tbsp gochujang + sesame oil. Mix and eat."]},"kongnamulguk":{"ko":"콩나물국","en":"Bean Sprout Soup","type":"soup","min":15,"ing":[["콩나물",500,"g"],["다진마늘",1,"큰술"],["간장",2,"큰술"],["소금",1,"작은술"],["대파(냉동)",0.5,"컵"],["물",2.5,"L"]],"ko_steps":["물 + 콩나물, 뚜껑 덮고 10분 끓인다 (중간에 뚜껑 열지 않기).","마늘·간장·소금 넣고, 대파 넣고 2분. 끝."],"en_steps":["Water + sprouts, lid ON, boil 10 min (don't open the lid).","Add garlic, soy sauce, salt, green onion, 2 min. Done."]},"miyeokguk":{"ko":"미역국","en":"Seaweed Soup","type":"soup","min":25,"ing":[["건미역",35,"g"],["참기름",2,"큰술"],["간장",3,"큰술"],["다진마늘",1,"큰술"],["소금",1,"작은술"],["물",3,"L"]],"ko_steps":["미역을 찬물에 20분 불려 꼭 짜고 먹기 좋게 자른다.","냄비에 참기름, 미역 2분 볶는다.","물·간장·마늘 넣고 15분 끓인다. 소금으로 간."],"en_steps":["Soak seaweed in cold water 20 min, squeeze, cut.","Pot + sesame oil, stir seaweed 2 min.","Add water, soy, garlic. Boil 15 min. Salt to taste."]},"gyeranguk":{"ko":"계란국","en":"Egg Drop Soup","type":"soup","min":10,"ing":[["계란",5,"개"],["대파(냉동)",1,"컵"],["간장",2,"큰술"],["다진마늘",1,"작은술"],["소금",1,"작은술"],["물",2.5,"L"]],"ko_steps":["물 끓으면 간장·마늘·소금.","계란 풀어서 둘러 붓고 젓지 말고 1분.","대파 넣고 끝."],"en_steps":["Boil water, add soy, garlic, salt.","Pour beaten eggs around, don't stir, 1 min.","Add green onion. Done."]},"eomukguk":{"ko":"어묵국","en":"Fish Cake Soup","type":"soup","min":15,"ing":[["어묵",500,"g"],["양파",1,"개"],["대파(냉동)",0.5,"컵"],["간장",3,"큰술"],["다진마늘",1,"작은술"],["후추",0.3,"작은술"],["물",2.5,"L"]],"ko_steps":["어묵은 한입 크기, 양파는 채 썬다.","물 끓으면 어묵·양파·간장·마늘 넣고 8분.","대파·후추 넣고 끝."],"en_steps":["Cut fish cake bite size, slice onion.","Boil water, add fish cake, onion, soy, garlic. 8 min.","Green onion + pepper. Done."]},"gyeranmari":{"ko":"계란말이","en":"Rolled Omelette","type":"side","min":15,"ing":[["계란",10,"개"],["대파(냉동)",0.5,"컵"],["당근",0.3,"개"],["소금",0.5,"작은술"],["식용유",2,"큰술"]],"ko_steps":["계란 + 소금 + 잘게 썬 대파·당근을 섞는다.","약불 팬에 기름, 계란물 1/3을 얇게 붓고 반쯤 익으면 돌돌 만다.","남은 계란물을 조금씩 부어가며 2~3번 반복.","한 김 식혀서 썬다. (어려우면 그냥 계란 스크램블도 OK)"],"en_steps":["Beat eggs with salt, chopped green onion and carrot.","LOW heat, oil, pour 1/3 thin. When half-set, roll it up.","Add more egg next to the roll and repeat 2-3 times.","Cool a bit and slice. (Too hard? Scrambled eggs are fine!)"]},"eomukbokkeum":{"ko":"어묵볶음","en":"Stir-fried Fish Cake","type":"side","min":10,"ing":[["어묵",500,"g"],["양파",1,"개"],["간장",3,"큰술"],["설탕",2,"큰술"],["물",3,"큰술"],["식용유",2,"큰술"],["참기름",1,"작은술"]],"ko_steps":["어묵·양파 채 썬다.","팬에 기름, 양파 1분 → 어묵 2분 볶는다.","간장·설탕·물 넣고 2분 졸인다. 참기름."],"en_steps":["Slice fish cake and onion.","Pan + oil: onion 1 min, fish cake 2 min.","Add soy, sugar, water, cook 2 min. Sesame oil."]},"gamjabokkeum":{"ko":"감자볶음","en":"Stir-fried Potato","type":"side","min":15,"ing":[["감자",4,"개"],["양파",1,"개"],["당근",0.3,"개"],["소금",1,"작은술"],["후추",0.3,"작은술"],["식용유",3,"큰술"]],"ko_steps":["감자는 가늘게 채 썰어 찬물에 5분 담갔다 물기 뺀다.","팬에 기름, 감자 6분 볶는다.","양파·당근 넣고 3분, 소금·후추."],"en_steps":["Julienne potatoes, soak in cold water 5 min, drain.","Pan + oil, stir-fry potato 6 min.","Add onion + carrot 3 min. Salt + pepper."]},"cabbagesalad":{"ko":"양배추 샐러드","en":"Cabbage Salad","type":"side","min":10,"ing":[["양배추",400,"g"],["당근",0.3,"개"],["마요네즈",5,"큰술"],["설탕",1,"큰술"],["소금",0.5,"작은술"]],"ko_steps":["양배추·당근을 가늘게 채 썰어 찬물에 헹궈 물기 뺀다.","마요·설탕·소금과 버무린다. 끝."],"en_steps":["Shred cabbage and carrot thin, rinse, drain well.","Mix with mayo, sugar, salt. Done."]},"hobakbokkeum":{"ko":"애호박볶음","en":"Stir-fried Zucchini","type":"side","min":10,"ing":[["애호박",2,"개"],["양파",0.5,"개"],["다진마늘",1,"작은술"],["소금",1,"작은술"],["식용유",2,"큰술"]],"ko_steps":["애호박 반달 모양으로 썬다.","팬에 기름, 마늘·양파 1분 → 애호박 4분.","소금으로 간. 끝."],"en_steps":["Cut zucchini into half-moons.","Pan + oil: garlic + onion 1 min, zucchini 4 min.","Salt. Done."]},"sausage":{"ko":"비엔나 야채볶음","en":"Sausage & Veggie Stir-fry","type":"side","min":10,"ing":[["비엔나소시지",500,"g"],["양파",1,"개"],["당근",0.5,"개"],["간장",2,"큰술"],["설탕",1,"큰술"],["식용유",2,"큰술"]],"ko_steps":["소시지에 칼집, 양파·당근 한입 크기.","팬에 기름, 당근 2분 → 소시지·양파 3분.","간장·설탕 넣고 1분. (케첩 있으면 3큰술 추가)"],"en_steps":["Score sausages; cut onion and carrot bite size.","Pan + oil: carrot 2 min, sausage + onion 3 min.","Soy + sugar 1 min. (Ketchup? add 3 Tbsp)"]}},"order":[{"id":"rice","g":"2w","cat":"주식","name":"횡재미 싸래기쌀 26년 햅쌀 20kg","price":28990,"pack":20,"unit":"kg","mon":40,"url":"8367050526?itemId=28644279793","note":"부서진 쌀이라 싸요. 밥맛 거의 같고, 물은 평소보다 조금 적게","ship":0,"step":1},{"id":"egg","g":"2w","cat":"계란","name":"계란 무항생제 대란 30구 x5판 (알부자집)","price":35910,"pack":150,"unit":"구","mon":300,"url":"9740442568?itemId=29153543536","note":"개당 239원","ship":0,"step":30},{"id":"milk","g":"2w","cat":"아침","name":"리솔라 멸균우유 1L x18","price":29550,"pack":18,"unit":"팩","mon":36,"url":"7842509309?itemId=21431624840","note":"","ship":0,"step":1},{"id":"bread","g":"2w","cat":"아침","name":"롯데 아이러브토스트 식빵 750g x5","price":14840,"pack":5,"unit":"봉","mon":10,"url":"1688623108?itemId=17336429751","note":"받으면 냉동. 다른 빵도 1봉으로 쳐서 입력","ship":0,"step":1},{"id":"kimchi","g":"2w","cat":"반찬","name":"시원 맛김치(절단) 10kg","price":15600,"pack":10,"unit":"kg","mon":20,"url":"8243689054?itemId=26309864589","note":"","ship":0,"step":1},{"id":"pork","g":"2w","cat":"고기","name":"돼지 앞다리 제육·불고기용 1kg x3 (냉동)","price":31200,"pack":3,"unit":"kg","mon":6,"url":"7473472419?itemId=24338668323","note":"제육·불고기","ship":0,"step":0.5},{"id":"porkstew","g":"2w","cat":"고기","name":"돼지 앞다리 찌개용 500g x4 (냉동)","price":17940,"pack":2,"unit":"kg","mon":4,"url":"8181250303?itemId=26125511265","note":"김치찌개·카레·짜장","ship":0,"step":0.5},{"id":"tofu","g":"2w","cat":"두부","name":"푸름원 두부 3kg (찌개·부침)","price":6630,"pack":3,"unit":"kg","mon":10,"url":"8243688495?itemId=10165311212","note":"남으면 깍둑 썰어 냉동","ship":3500,"step":0.5},{"id":"onion","g":"2w","cat":"채소","name":"양파(소) 10kg","price":11980,"pack":10,"unit":"kg","mon":16,"url":"8677223497?itemId=25190402328","note":"큰 양파 1개 ≈ 0.3kg","ship":0,"step":0.5},{"id":"cabbage","g":"2w","cat":"채소","name":"깐 양배추 3kg","price":6690,"pack":3,"unit":"kg","mon":6,"url":"8400816061?itemId=24283677123","note":"1통 ≈ 2kg","ship":0,"step":0.5},{"id":"zucchini","g":"2w","cat":"채소","name":"애호박 10개","price":11900,"pack":10,"unit":"개","mon":16,"url":"8854400906?itemId=25815544209","note":"","ship":0,"step":1},{"id":"chicken","g":"1m","cat":"고기","name":"브라질 닭다리정육 2kg (냉동)","price":10650,"pack":2,"unit":"kg","mon":11,"url":"7690163951?itemId=42721738","note":"필요한 만큼 여러 개. 1팩 ≈ 1kg으로 입력","ship":3000,"step":0.5},{"id":"samgyeop","g":"1m","cat":"고기","name":"옛날 대패삼겹살 2kg (500g x4, 냉동)","price":21900,"pack":2,"unit":"kg","mon":5,"url":"5184950356?itemId=23090443149","note":"바베큐·김치삼겹","ship":0,"step":0.5},{"id":"mince","g":"1m","cat":"고기","name":"한돈 뒷다리 다짐육 1kg (냉동)","price":10000,"pack":1,"unit":"kg","mon":1,"url":"8064979205?itemId=22679867701","note":"마파두부","ship":0,"step":0.5},{"id":"spam","g":"1m","cat":"가공","name":"롯데 런천미트 1.8kg x2","price":22420,"pack":3.6,"unit":"kg","mon":3.6,"url":"7338080330?itemId=7389691710","note":"큰 캔 1개 = 1.8kg","ship":0,"step":0.9},{"id":"vienna","g":"1m","cat":"가공","name":"하림 요리비엔나 1kg x2","price":13450,"pack":2,"unit":"kg","mon":2,"url":"1353234056?itemId=19145231474","note":"","ship":0,"step":0.5},{"id":"tuna","g":"1m","cat":"가공","name":"동원참치 덕용 1.88kg","price":17690,"pack":1.88,"unit":"kg","mon":1.9,"url":"9392677909?itemId=28056683384","note":"큰 캔 1개 = 1.88kg","ship":0,"step":0.2},{"id":"eomuk","g":"1m","cat":"가공","name":"부산진어묵 사각 2.8kg","price":13820,"pack":2.8,"unit":"kg","mon":5.4,"url":"7249338474?itemId=18436849513","note":"받으면 소분 냉동","ship":0,"step":0.5},{"id":"mandu","g":"1m","cat":"가공","name":"사조오양 물만두 2.8kg","price":11720,"pack":2.8,"unit":"kg","mon":3.2,"url":"8243709044?itemId=3885697803","note":"","ship":5000,"step":0.5},{"id":"tteok","g":"1m","cat":"가공","name":"떡볶이떡(별대) 3.6kg","price":10500,"pack":3.6,"unit":"kg","mon":3.6,"url":"1883753344?itemId=14724844328","note":"소분 냉동","ship":0,"step":0.5},{"id":"cereal","g":"1m","cat":"아침","name":"콘푸로스트 1.32kg x3","price":26250,"pack":3.96,"unit":"kg","mon":4.8,"url":"6590520242?itemId=513906307","note":"대용량 1박스 ≈ 1.3kg","ship":0,"step":1.3},{"id":"jam","g":"1m","cat":"아침","name":"초록원 딸기잼+블루베리잼 1kg 세트","price":14700,"pack":2,"unit":"병","mon":2,"url":"6167586589?itemId=24617013785","note":"1kg 병 기준","ship":0,"step":1},{"id":"potato","g":"1m","cat":"채소","name":"강원 수미감자 10kg","price":16900,"pack":10,"unit":"kg","mon":10,"url":"8802272872?itemId=28895866190","note":"","ship":0,"step":1},{"id":"carrot","g":"1m","cat":"채소","name":"세척당근 5kg","price":8970,"pack":5,"unit":"kg","mon":3.5,"url":"9061184554?itemId=26613805448","note":"","ship":0,"step":0.5},{"id":"greenonion","g":"1m","cat":"채소","name":"냉동 대파 슬라이스 1kg x3","price":9760,"pack":3,"unit":"kg","mon":2.5,"url":"8053963592?itemId=27586206945","note":"","ship":0,"step":0.5},{"id":"oil","g":"1m","cat":"양념","name":"해표 콩기름 1.8L x2","price":10560,"pack":3.6,"unit":"L","mon":2.5,"url":"487322?itemId=231349355","note":"","ship":0,"step":0.9},{"id":"sugar","g":"1m","cat":"양념","name":"백설 하얀설탕 3kg","price":6340,"pack":3,"unit":"kg","mon":1.5,"url":"7143767691?itemId=15326731304","note":"","ship":0,"step":0.5},{"id":"curry","g":"1m","cat":"양념","name":"오뚜기 카레 과립 약간매운맛 1kg","price":7400,"pack":1,"unit":"kg","mon":0.8,"url":"2664561?itemId=18728028084","note":"","ship":0,"step":0.25},{"id":"miyeok","g":"1m","cat":"양념","name":"오뚜기 옛날 자른미역 50g x5","price":11400,"pack":250,"unit":"g","mon":260,"url":"1008978?itemId=16303927277","note":"","ship":0,"step":50},{"id":"gim","g":"opt","cat":"선택","name":"광천김 도시락김 5g x64","price":17980,"pack":64,"unit":"봉","mon":64,"url":"7186022517?itemId=25651782440","note":"없어도 됨. 아끼려면 빼기","ship":0,"step":8},{"id":"jjajang","g":"ask","cat":"양념","name":"오뚜기 짜장 과립 1kg","price":9460,"pack":0,"unit":"","mon":0.8,"url":"7553233653?itemId=20382169912","note":"","ship":0,"step":0},{"id":"garlic","g":"ask","cat":"양념","name":"냉동 다진마늘 1kg x3","price":12230,"pack":0,"unit":"","mon":0.5,"url":"8248666796?itemId=22877342434","note":"","ship":0,"step":0},{"id":"sesame","g":"ask","cat":"양념","name":"해표 재래식압착 참기름 1.8L","price":19300,"pack":0,"unit":"","mon":0.4,"url":"4989760?itemId=22757222","note":"","ship":0,"step":0},{"id":"gochujang","g":"ask","cat":"양념","name":"해찬들 태양초 알찬고추장 6.5kg","price":21880,"pack":0,"unit":"","mon":0.4,"url":"9192482733?itemId=15784605676","note":"","ship":0,"step":0},{"id":"soy","g":"ask","cat":"양념","name":"청정원 쉐프원 진간장 13L","price":18820,"pack":0,"unit":"","mon":0.3,"url":"7196421572?itemId=19120575108","note":"","ship":0,"step":0},{"id":"gochugaru","g":"ask","cat":"양념","name":"곰곰 고춧가루 1kg","price":11780,"pack":0,"unit":"","mon":0.6,"url":"9223028235?itemId=23036516271","note":"","ship":0,"step":0},{"id":"doenjang","g":"ask","cat":"양념","name":"청정원순창 재래식 생된장 2.8kg","price":10980,"pack":0,"unit":"","mon":0.5,"url":"8254864471?itemId=19139549062","note":"","ship":0,"step":0},{"id":"mayo","g":"ask","cat":"양념","name":"오뚜기 골드 마요네즈 3.2kg","price":13220,"pack":0,"unit":"","mon":0.5,"url":"5876698423?itemId=10297009191","note":"","ship":0,"step":0},{"id":"ssamjang","g":"ask","cat":"양념","name":"해찬들 사계절 쌈장 170g x6","price":6420,"pack":0,"unit":"","mon":0.5,"url":"46328?itemId=18171054566","note":"","ship":0,"step":0},{"id":"dangmyeon","g":"ask","cat":"양념","name":"해표 쫄깃한 당면 1kg","price":5860,"pack":0,"unit":"","mon":0.4,"url":"413282?itemId=1075828","note":"","ship":0,"step":0},{"id":"salt","g":"ask","cat":"양념","name":"해표 꽃소금 3kg","price":5280,"pack":0,"unit":"","mon":0.2,"url":"7427535576?itemId=19283380567","note":"","ship":0,"step":0},{"id":"pepper","g":"ask","cat":"양념","name":"오뚜기 오쉐프 순후추 450g","price":9400,"pack":0,"unit":"","mon":0.2,"url":"9751767394?itemId=29200178440","note":"","ship":0,"step":0},{"id":"starch","g":"ask","cat":"양념","name":"농부의뜰 감자전분 1kg","price":3800,"pack":0,"unit":"","mon":0.2,"url":"8288554606?itemId=22230608162","note":"","ship":0,"step":0},{"id":"sprout","g":"local","cat":"채소","name":"콩나물 (매주 1kg 정도)","price":3000,"pack":1,"unit":"kg","mon":5,"url":"","note":"양양 마트. 쿠팡은 오래 걸려 시들어요","ship":0,"step":0},{"id":"lettuce","g":"local","cat":"채소","name":"상추·깻잎 (바베큐 하는 날)","price":5000,"pack":1,"unit":"봉","mon":2,"url":"","note":"없으면 양배추 쌈으로","ship":0,"step":0}],"stock0":{"date":"2026-10-17","v":{"rice":15,"milk":12,"kimchi":5,"onion":1.8,"bread":4,"chicken":2,"samgyeop":3,"tuna":1.7,"cereal":7.8,"jam":2,"oil":"ok","sugar":"ok","curry":"ok","miyeok":"ok","gochujang":"ok","soy":"ok","gochugaru":"ok","doenjang":"ok","mayo":"ok","ssamjang":"ok","dangmyeon":"ok","salt":"ok","pepper":"ok","starch":"ok"}}};
+const LS=localStorage;
+const S={people:+(LS.gd_people||7),lang:LS.gd_lang||'ko',tab:LS.gd_tab||'today',day:new Date(),rf:'all',q:'',week:null,mode:LS.gd_mode||'big'};
+const T={ko:{today:'오늘',menu:'식단표',recipes:'레시피',order:'주문',budget:'예산',bf:'아침',lunch:'점심',dinner:'저녁',week:'주차',days:['월','화','수','목','금','토','일'],people:'명',tonight:'오늘 할 일',thaw:'해동: 내일 쓸 고기를 오늘 밤 냉동실 → 냉장실로',nothaw:'내일은 해동할 고기가 없어요.',rice:'밥: 점심·저녁 각각 쌀 약 {r}컵(종이컵) = {g}g',ing:'재료',steps:'만드는 법',min:'분',main:'메인',soup:'국',side:'반찬',all:'전체',search:'메뉴 검색',servings:'{n}인분',spoon:'1큰술 = 밥숟가락 가득 1번 · 1작은술 = 찻숟가락 1번 · 1컵 = 종이컵 1컵(180ml)',orderday:'오늘은 쿠팡 주문하는 날 → 아래 "주문" 탭',thawtitle:'해동',kimchi:'+ 김치'},
+ en:{today:'Today',menu:'Menu',recipes:'Recipes',order:'Order',budget:'Budget',bf:'Breakfast',lunch:'Lunch',dinner:'Dinner',week:'Week',days:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],people:' ppl',tonight:'To-do today',thaw:'Thaw: move tomorrow\'s meat from FREEZER to FRIDGE tonight',nothaw:'No meat to thaw for tomorrow.',rice:'Rice: about {r} paper cups ({g}g) raw rice for lunch, and again for dinner',ing:'Ingredients',steps:'How to cook',min:'min',main:'Main',soup:'Soup',side:'Side',all:'All',search:'Search menu',servings:'{n} servings',spoon:'1 Tbsp = 1 heaping rice spoon · 1 tsp = 1 teaspoon · 1 cup = 1 paper cup (180ml)',orderday:'Today is Coupang order day',thawtitle:'Thaw',kimchi:'+ kimchi'}};
 const t=k=>T[S.lang][k];
 const won=n=>Math.round(n).toLocaleString('ko-KR')+'원';
 const R=id=>DATA.recipes[id];
 const rname=id=>S.lang==='en'?R(id).en:R(id).ko;
 const anchor=new Date(DATA.anchor+'T00:00:00');
-function idx(d){const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());const diff=Math.round((x-anchor)/864e5);const i=((diff%28)+28)%28;return {w:Math.floor(i/7),d:i%7};}
+const dayOnly=d=>new Date(d.getFullYear(),d.getMonth(),d.getDate());
+function idx(d){const diff=Math.round((dayOnly(d)-anchor)/864e5);const i=((diff%28)+28)%28;return {w:Math.floor(i/7),d:i%7};}
 function mealsOf(d){const {w,d:dd}=idx(d);return {w,dd,bf:DATA.breakfastPattern[dd],l:DATA.menu[w][dd][0],di:DATA.menu[w][dd][1]};}
-function fmtQ(q,u){const f=S.people/DATA.basePeople;let v=q*f;const en=S.lang==='en';
- const um={'큰술':'Tbsp','작은술':'tsp','컵':'cup','개':'pcs','공기':'bowls','봉':'packs','통':'tub','g':'g','L':'L','ml':'ml'};
- const uu=en?(um[u]||u):u;
+function toast(m){const e=document.getElementById('toast');e.textContent=m;e.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>e.style.display='none',2200);}
+const F=()=>S.people/DATA.basePeople;
+function fmtQ(q,u){let v=q*F();const en=S.lang==='en';
+ const um={'큰술':'Tbsp','작은술':'tsp','컵':'cup','개':'pcs','공기':'bowls','봉':'packs','통':'tub'};const uu=en?(um[u]||u):u;
  if(u==='g'){v=v>=200?Math.round(v/50)*50:Math.round(v/10)*10;return v>=1000?(v/1000).toFixed(v%1000?1:0).replace(/\.0$/,'')+'kg':v+'g';}
- if(u==='ml'){return Math.round(v/50)*50+'ml';}
- if(u==='L'){return (Math.round(v*10)/10)+'L';}
- if(u==='공기'||u==='봉'){return Math.max(1,Math.round(v))+(en?' '+uu:uu);}
+ if(u==='ml')return Math.round(v/50)*50+'ml';
+ if(u==='L')return (Math.round(v*10)/10)+'L';
+ if(u==='공기'||u==='봉')return Math.max(1,Math.round(v))+(en?' '+uu:uu);
  let r=Math.round(v*2)/2; if(r===0) r=v<0.4?Math.round(v*10)/10:0.5;
  const s=(r%1===0.5&&r<1)?'½':(r%1===0.5?Math.floor(r)+'½':String(r));
  return s+(en?' '+uu:uu);}
-function ingName(n){return S.lang==='en'?(DATA.en[n]||n):n;}
-function openRecipe(id){const r=R(id);const en=S.lang==='en';
- let h=`<button class="x" onclick="closeM()">×</button><h2>${en?r.en:r.ko}</h2><div class="muted">${en?r.ko:r.en} · ${r.min}${t('min')} · ${t('servings').replace('{n}',S.people)}</div>`;
- if(r.thaw) h+=`<div class="thaw">❄️ ${t('thawtitle')}: ${en?'night before, move to fridge':'전날 밤 냉동실 → 냉장실'} (${r.thaw.replace(/[\d.]+(kg|g)/,m=>{const g=parseFloat(m)*(m.endsWith('kg')?1000:1);return fmtQ(g,'g')})})</div>`;
- h+=`<h3>${t('ing')}</h3><ul class="ing">${r.ing.map(([n,q,u])=>`<li>${ingName(n)} <b>${fmtQ(q,u)}</b></li>`).join('')}</ul><div class="muted">${t('spoon')}</div>`;
- const st=en?r.en_steps:r.ko_steps;
- h+=`<h3>${t('steps')}</h3><ol class="steps">${st.map(s=>`<li>${s}</li>`).join('')}</ol>`;
- if(!en) h+=`<details><summary class="muted">English</summary><ol>${r.en_steps.map(s=>`<li>${s}</li>`).join('')}</ol></details>`;
- document.getElementById('mbox').innerHTML=h;document.getElementById('modal').classList.add('on');}
+const scaleTxt=s=>s.replace(/[\d.]+(kg|g)/,m=>fmtQ(parseFloat(m)*(m.endsWith('kg')?1000:1),'g'));
+function openM(h){document.getElementById('mbox').innerHTML='<button class="x" onclick="closeM()">×</button>'+h;document.getElementById('modal').classList.add('on');document.getElementById('mbox').scrollTop=0;}
 function closeM(){document.getElementById('modal').classList.remove('on');}
 document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeM();});
-function chips(arr){return arr.map((id,i)=>i===0?`<div class="main rlink" onclick="openRecipe('${id}')">${rname(id)}</div>`:`<span class="chip ${R(id).type==='side'?'side':''}" onclick="openRecipe('${id}')">+ ${rname(id)}</span>`).join('');}
-function vToday(){const d=S.day;const m=mealsOf(d);const en=S.lang==='en';
- const tm=new Date(d.getTime()+864e5);const n=mealsOf(tm);
- const thaw=[...n.l,...n.di].map(id=>R(id).thaw?{id,txt:R(id).thaw}:null).filter(Boolean);
+function openRecipe(id){const r=R(id);const en=S.lang==='en';
+ let h=`<h2>${en?r.en:r.ko}</h2><div class="muted">${en?r.ko:r.en} · ${r.min}${t('min')} · ${t('servings').replace('{n}',S.people)}</div>`;
+ if(r.thaw) h+=`<div class="thaw">❄️ ${t('thawtitle')}: ${en?'night before, freezer → fridge':'전날 밤 냉동실 → 냉장실'} (${scaleTxt(r.thaw)})</div>`;
+ h+=`<h3>${t('ing')}</h3><ul class="ing">${r.ing.map(([n,q,u])=>`<li>${en?(DATA.en[n]||n):n} <b>${fmtQ(q,u)}</b></li>`).join('')}</ul><div class="muted">${t('spoon')}</div>`;
+ h+=`<h3>${t('steps')}</h3><ol class="steps">${(en?r.en_steps:r.ko_steps).map(s=>`<li>${s}</li>`).join('')}</ol>`;
+ if(!en) h+=`<details><summary class="muted">English</summary><ol>${r.en_steps.map(s=>`<li>${s}</li>`).join('')}</ol></details>`;
+ openM(h);}
+function chips(arr){return arr.map((id,i)=>i===0?`<div class="main rlink" onclick="openRecipe('${id}')">${rname(id)}</div>`:`<span class="chip ${R(id).type==='side'?'g':''}" onclick="openRecipe('${id}')">+ ${rname(id)}</span>`).join('');}
+/* ---------- 오늘 ---------- */
+function vToday(){const d=S.day,m=mealsOf(d),en=S.lang==='en';
+ const n=mealsOf(new Date(d.getTime()+864e5));
+ const thaw=[...n.l,...n.di].filter(id=>R(id).thaw);
  const ds=en?d.toLocaleDateString('en-US',{month:'short',day:'numeric',weekday:'short'}):`${d.getMonth()+1}월 ${d.getDate()}일 (${t('days')[m.dd]})`;
  const riceG=Math.round(S.people*100/50)*50, riceC=Math.round(riceG/150*2)/2;
- const isOrder=[1,15].includes(d.getDate());
- let h=`<div class="datebar"><button onclick="shiftDay(-1)">‹</button><div class="d"><b>${ds}</b><span class="muted">${S.lang==='en'?'Week '+(m.w+1):(m.w+1)+t('week')} · ${t('people')} ${S.people}</span></div><button onclick="shiftDay(1)">›</button></div>`;
- h+=`<div class="meals">`;
- h+=`<div class="card meal"><h3>☀️ ${t('bf')}</h3><div class="main">${DATA.breakfast[m.bf][S.lang]}</div></div>`;
+ let h=`<div class="datebar"><button onclick="shiftDay(-1)">‹</button><div class="d"><b>${ds}</b><span class="muted">${en?'Week '+(m.w+1):(m.w+1)+t('week')} · ${S.people}${t('people')}</span></div><button onclick="shiftDay(1)">›</button></div><div class="meals">`;
+ h+=`<div class="card meal"><h3>☀️ ${t('bf')}</h3><div class="main" style="font-size:18px">${DATA.breakfast[m.bf][S.lang]}</div></div>`;
  h+=`<div class="card meal"><h3>🍚 ${t('lunch')}</h3>${chips(m.l)}</div>`;
- h+=`<div class="card meal"><h3>🌙 ${t('dinner')}</h3>${chips(m.di)}<div class="muted" style="margin-top:6px">${en?'+ kimchi':'+ 김치·김'}</div></div></div>`;
+ h+=`<div class="card meal"><h3>🌙 ${t('dinner')}</h3>${chips(m.di)}<div class="muted" style="margin-top:4px">${t('kimchi')}</div></div></div>`;
  h+=`<div class="card todo"><b>✅ ${t('tonight')}</b><ul>`;
- if(isOrder) h+=`<li><b>${t('orderday')}</b></li>`;
- h+= thaw.length?thaw.map(x=>`<li>❄️ ${t('thaw')}: <b>${x.txt.replace(/[\d.]+(kg|g)/,m=>{const g=parseFloat(m)*(m.endsWith('kg')?1000:1);return fmtQ(g,'g')})}</b> (${rname(x.id)})</li>`).join(''):`<li>${t('nothaw')}</li>`;
+ if([1,15].includes(d.getDate())) h+=`<li><b>🛒 ${t('orderday')}</b></li>`;
+ h+=thaw.length?thaw.map(id=>`<li>❄️ ${t('thaw')}: <b>${scaleTxt(R(id).thaw)}</b> (${rname(id)})</li>`).join(''):`<li>${t('nothaw')}</li>`;
  h+=`<li>🍚 ${t('rice').replace('{r}',riceC).replace('{g}',riceG.toLocaleString())}</li></ul></div>`;
- h+=`<p class="muted">${en?'Tap a dish name to see the recipe. Amounts change with the People button at the top.':'메뉴 이름을 누르면 레시피가 나와요. 위의 인원 버튼을 바꾸면 재료 양이 자동으로 바뀌어요.'}</p>`;
+ h+=`<p class="muted">${en?'Tap a dish to see the recipe. Change the number of people at the top.':'메뉴 이름을 누르면 레시피가 나와요. 맨 위 인원을 바꾸면 재료 양이 바뀌어요.'}</p>`;
  return h;}
 function shiftDay(n){S.day=new Date(S.day.getTime()+n*864e5);render();}
-function vMenu(){const ti=idx(new Date());let h=`<div class="noprint" style="overflow:hidden"><span class="printbtn"><a class="btn ghost" href="menu-print.pdf" target="_blank">PDF</a> <button class="btn" onclick="window.print()">🖨 ${t('print')}</button></span><p class="muted">${S.lang==='en'?'4 weeks repeat. Week 1 starts Mon '+DATA.anchor+'.':'4주가 계속 반복돼요. 1주차 시작: '+DATA.anchor+' (월). 오늘은 주황색 칸.'}</p></div>`;
- for(let w=0;w<4;w++){h+=`<div class="${w%2?'page':''}"><div class="wk"><b>${S.lang==='en'?'Week '+(w+1):(w+1)+t('week')}</b></div><table class="mt"><tr><th></th>${t('days').map(x=>`<th>${x}</th>`).join('')}</tr>`;
-  const row=(lab,fn)=>`<tr><td class="lab">${lab}</td>${[0,1,2,3,4,5,6].map(d=>`<td class="${ti.w===w&&ti.d===d?'today':''}">${fn(d)}</td>`).join('')}</tr>`;
-  h+=row(t('bf'),d=>`<span class="m2">${DATA.breakfastPattern[d]==='A'?(S.lang==='en'?'Cereal':'시리얼'):(S.lang==='en'?'Toast+egg':'토스트·계란')}</span>`);
-  const cell=arr=>arr.map((id,i)=>`<div class="${i?'m2':'m1'}" onclick="openRecipe('${id}')">${i?'+ ':''}${rname(id)}</div>`).join('');
-  h+=row(t('lunch'),d=>cell(DATA.menu[w][d][0]));
-  h+=row(t('dinner'),d=>cell(DATA.menu[w][d][1]));
-  h+=`</table></div>`;}
+/* ---------- 식단표 ---------- */
+function vMenu(){const en=S.lang==='en';const ti=idx(new Date());if(S.week===null)S.week=ti.w;
+ const today=dayOnly(new Date());const diff=Math.round((today-anchor)/864e5);const cycleStart=new Date(anchor.getTime()+(Math.floor(diff/28)*28)*864e5);
+ let h=`<div class="weeks screenonly">${[0,1,2,3].map(w=>`<span class="chip ${S.week===w?'':'off'}" onclick="S.week=${w};render()">${en?'Week '+(w+1):(w+1)+'주차'}${ti.w===w?(en?' •now':' •이번주'):''}</span>`).join('')}<a class="chip off" href="menu-print.pdf" target="_blank">🖨 PDF</a></div><div class="days screenonly">`;
+ for(let d=0;d<7;d++){const dt=new Date(cycleStart.getTime()+(S.week*7+d)*864e5);const isT=S.week===ti.w&&d===ti.d;const [L,D]=DATA.menu[S.week][d];
+  const cell=arr=>arr.map((id,i)=>`<span class="${i?'m2':'m1'}" onclick="openRecipe('${id}')">${i?' + ':''}${rname(id)}</span>`).join('');
+  h+=`<div class="day ${isT?'today':''}"><div class="dh"><span>${t('days')[d]} ${dt.getMonth()+1}/${dt.getDate()}${isT?(en?' · Today':' · 오늘'):''}</span><span class="muted">${DATA.breakfastPattern[d]==='A'?(en?'Cereal':'아침 시리얼'):(en?'Toast+egg':'아침 토스트·계란')}</span></div>
+  <div class="row"><span class="lb">${t('lunch')}</span><div>${cell(L)}</div></div><div class="row"><span class="lb">${t('dinner')}</span><div>${cell(D)}</div></div></div>`;}
+ h+=`</div><div class="printonly">${[0,1,2,3].map(w=>`<div class="${w===1?'pb':''}"><h3>${w+1}주차</h3><table class="mt"><tr><th style="width:40px"></th>${t('days').map(x=>`<th>${x}</th>`).join('')}</tr>${[0,1].map(k=>`<tr><th>${k?t('dinner'):t('lunch')}</th>${[0,1,2,3,4,5,6].map(d=>`<td>${DATA.menu[w][d][k].map((id,i)=>`<div class="${i?'m2':''}">${i?'+ ':''}${rname(id)}</div>`).join('')}</td>`).join('')}</tr>`).join('')}</table></div>`).join('')}</div>`;
  return h;}
+/* ---------- 레시피 ---------- */
 function vRecipes(){const en=S.lang==='en';const ids=Object.keys(DATA.recipes).filter(id=>(S.rf==='all'||R(id).type===S.rf)&&(!S.q||(R(id).ko+R(id).en).toLowerCase().includes(S.q.toLowerCase())));
- let h=`<div class="filters">${['all','main','soup','side'].map(k=>`<span class="chip ${S.rf===k?'':'side'}" onclick="S.rf='${k}';render()">${t(k)}</span>`).join('')}<input placeholder="${t('search')}" value="${S.q}" oninput="S.q=this.value;render(true)"></div>`;
- h+=`<div class="rgrid">${ids.map(id=>{const r=R(id);return `<div class="rc" onclick="openRecipe('${id}')"><b>${en?r.en:r.ko}</b><span class="tag">${t(r.type)}</span><div class="muted">${en?r.ko:r.en}</div><div class="muted">⏱ ${r.min}${t('min')}${r.thaw?' · ❄️':''}</div></div>`}).join('')}</div>`;
+ let h=`<div class="filters">${['all','main','soup','side'].map(k=>`<span class="chip ${S.rf===k?'':'off'}" onclick="S.rf='${k}';render()">${t(k)}</span>`).join('')}<input placeholder="🔍 ${t('search')}" value="${S.q}" oninput="S.q=this.value;render(true)"></div>`;
+ h+=`<div class="rgrid">${ids.map(id=>{const r=R(id);return `<div class="rc" onclick="openRecipe('${id}')"><b>${en?r.en:r.ko}</b><div class="muted">${t(r.type)} · ⏱ ${r.min}${t('min')}${r.thaw?' · ❄️':''}</div></div>`}).join('')}</div>`;
  return h;}
-const G={'2w':{t:'① 매달 1일 · 15일 주문 (2주분)',d:'우유·계란·빵·쌀·김치·돼지고기·두부·채소처럼 빨리 쓰거나 상하는 것'},'1m':{t:'② 매달 1일 같이 주문 (한 달분)',d:'닭·삼겹살·햄·어묵·만두·시리얼 등 냉동/오래가는 것. 1일 주문 때 ①과 함께'},'ask':{t:'③ 떨어지면 주문 (2~3달에 한 번)',d:'양념류. 1일·15일 주문 전에 냉장고·선반 확인하고 거의 다 썼으면 추가'},'local':{t:'④ 양양 마트에서 (매주)',d:'쿠팡은 2~4일 걸려 시드는 것만'}};
-function pk(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+(d.getDate()<15?'a':'b');}
-function vOrder(){const f=S.people/DATA.basePeople;const ck=JSON.parse(localStorage['gd_ck_'+pk()]||'{}');
- let h=`<div class="note"><b>주문 방법 (처음 한 번만 조금 번거로워요)</b><ol style="margin:6px 0 0;padding-left:20px"><li>①+② 목록의 "쿠팡" 버튼을 눌러 하나씩 장바구니에 담고 결제.</li><li>다음부터는 쿠팡 <b>마이쿠팡 → 다시 구매</b>에서 지난 주문을 그대로 담으면 1~2분이면 끝.</li><li>담은 건 왼쪽 체크. 체크는 이 기기에 저장되고, 1일·15일마다 새로 시작돼요.</li></ol><div class="muted" style="margin-top:6px">가격은 ${DATA.priceDate} 쿠팡 검색 기준이라 조금씩 바뀌어요. 품절이면 같은 종류 중 100g당 가격이 비슷한 걸로.</div></div>`;
- for(const g of ['2w','1m','ask','local']){const items=DATA.order.map((o,i)=>({...o,i})).filter(o=>o.g===g);let sub=0;
-  h+=`<div class="card"><h3 style="margin:0">${G[g].t}</h3><div class="muted">${G[g].d}</div><table class="ot"><tr><th></th><th>품목</th><th class="num">수량</th><th class="num">가격</th><th></th></tr>`;
-  for(const o of items){const qBase=o.qty||1;const q=o.scale&&g!=='ask'?Math.max(1,Math.round(qBase*f*2)/2):qBase;const qq=Math.ceil(q);const cost=o.price*qq;sub+=g==='ask'?0:cost;const on=ck[o.i];
-   h+=`<tr class="${on?'done':''}"><td><input type="checkbox" ${on?'checked':''} onchange="tick(${o.i},this.checked)"></td><td>${o.name}${o.note?`<div class="muted">${o.note}</div>`:''}</td><td class="num">${qq}개${q!==qBase&&o.scale?'<div class="muted">('+S.people+'명)</div>':''}</td><td class="num">${won(cost)}</td><td>${o.url?`<a class="btn" target="_blank" href="https://www.coupang.com/vp/products/${o.url}">쿠팡</a>`:''}</td></tr>`;}
-  h+=`</table>${g==='ask'?'':`<div style="text-align:right;margin-top:8px"><b>합계 ${won(sub)}</b> <span class="muted">(1회 주문)</span></div>`}</div>`;}
+/* ---------- 재고 & 주문 ---------- */
+function getStock(){try{const s=JSON.parse(LS.gd_stock||'null');if(s&&s.v)return s;}catch(e){}return JSON.parse(JSON.stringify(DATA.stock0));}
+function saveStock(s){s.date=new Date().toISOString().slice(0,10);LS.gd_stock=JSON.stringify(s);}
+function getSel(){try{return JSON.parse(LS.gd_sel||'{}')}catch(e){return {}}}
+function saveSel(s){LS.gd_sel=JSON.stringify(s);}
+const O=id=>DATA.order.find(o=>o.id===id);
+function visible(o){if(o.g==='local')return false;if(S.mode==='small')return o.g==='2w';return true;}
+function calc(o,stock){const s=stock.v[o.id];if(o.g==='ask')return {need:0,buy:s==='ok'?0:1};if(o.g==='opt')return {need:o.mon,buy:0};
+ const need=o.mon*F()*(o.g==='2w'?0.5:1);if(s==='ok')return {need,buy:0};const sh=need-(+s||0);return {need,buy:sh<=0?0:Math.max(0,Math.ceil(sh/o.pack-0.15))};}
+function rows(){const st=getStock(),sel=getSel();return DATA.order.filter(visible).map(o=>{const c=calc(o,st);const chosen=(o.id in sel)?sel[o.id]:c.buy>0;const cnt=chosen?Math.max(1,c.buy):0;return {o,c,chosen,cnt,cost:cnt*o.price};});}
+function totals(rs){const ch=rs.filter(r=>r.chosen);const sum=ch.reduce((a,r)=>a+r.cost,0);const ship=ch.reduce((a,r)=>a+(r.o.ship||0),0);return {n:ch.length,sum,ship};}
+const fx=v=>(Math.round(v*10)/10).toString();
+const G={'2w':['① 2주분','매달 1일 · 15일 둘 다 주문'],'1m':['② 한 달분','매달 1일에만 같이 주문'],'ask':['③ 양념','떨어진 것만 "떨어짐"으로'],'opt':['선택','아끼려면 빼도 되는 것']};
+function itemCard(r,st){const o=r.o,s=st.v[o.id];let h=`<div class="it ${r.chosen?'sel':''} ${r.c.buy===0&&!r.chosen?'zero':''}"><div class="top"><input type="checkbox" ${r.chosen?'checked':''} onchange="pick('${o.id}',this.checked)"><div class="nm">${o.name}${o.note?`<div class="muted" style="font-weight:400">${o.note}</div>`:''}</div><div class="pr">${r.cnt?won(r.cost):'-'}<small>${r.cnt?r.cnt+'개':'안 사도 됨'}${o.ship&&r.cnt?' +배송비':''}</small></div></div><div class="bot">`;
+ if(o.g==='ask'){h+=`<span class="chip ${s==='ok'?'g':'off'}" onclick="setS('${o.id}','ok')">있음</span><span class="chip ${s!=='ok'?'':'off'}" onclick="setS('${o.id}',0)">떨어짐</span>`;}
+ else if(o.g!=='opt'){const ok=s==='ok';h+=`<span class="unit">재고</span><span class="step"><button onclick="bump('${o.id}',-1)">−</button><input type="number" inputmode="decimal" value="${ok?'':fx(+s||0)}" placeholder="${ok?'충분':'0'}" onchange="setS('${o.id}',this.value===''?0:+this.value)"><button onclick="bump('${o.id}',1)">+</button></span><span class="unit">${o.unit}</span><span class="chip ${ok?'g':'off'}" onclick="setS('${o.id}',${ok?0:"'ok'"})">${ok?'✓ 충분':'충분'}</span><div class="need">${S.mode==='small'||o.g==='2w'?'2주':'한 달'} 필요 <b>${fx(r.c.need)}${o.unit}</b> · 1개 = ${fx(o.pack)}${o.unit}</div>`;}
+ h+=`${o.url?`<a class="btn ghost" style="margin-left:auto" target="_blank" href="https://www.coupang.com/vp/products/${o.url}" onclick="markOpened('${o.id}')">쿠팡</a>`:''}</div></div>`;return h;}
+function vOrder(){const st=getStock();const rs=rows();
+ let h=`<div class="card"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><div class="seg"><button class="${S.mode==='big'?'on':''}" onclick="setMode('big')">큰 주문 (1일)</button><button class="${S.mode==='small'?'on':''}" onclick="setMode('small')">작은 주문 (15일)</button></div></div>
+ <div class="muted" style="margin-top:8px">1) 재고를 입력하면 살 개수가 자동으로 바뀌어요. 2) 체크된 것만 담아요. 3) 아래 검은 바의 <b>담기</b>를 누르세요.</div>
+ <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span class="muted" style="flex:1;align-self:center">재고 입력일: <b>${st.date}</b></span><button class="btn gray" onclick="shareStock()">재고 공유 링크</button><button class="btn gray" onclick="resetStock()">재고 지우기</button></div></div>`;
+ for(const g of ['2w','1m','ask','opt']){const list=rs.filter(r=>r.o.g===g);if(!list.length)continue;const sub=list.filter(r=>r.chosen).reduce((a,r)=>a+r.cost,0);
+  h+=`<h2 class="sec">${G[g][0]} <span class="muted" style="font-weight:400">${G[g][1]}</span><span style="float:right;font-size:14px">${won(sub)}</span></h2>`+list.map(r=>itemCard(r,st)).join('');}
+ const loc=DATA.order.filter(o=>o.g==='local');
+ h+=`<h2 class="sec">④ 양양 마트 <span class="muted" style="font-weight:400">매주</span></h2><div class="card">${loc.map(o=>`<div>• ${o.name}<div class="muted">${o.note}</div></div>`).join('')}</div>`;
+ h+=`<p class="muted">가격은 ${DATA.priceDate} 쿠팡 기준이라 조금씩 바뀌어요. 품절이면 100g당 가격이 비슷한 같은 종류로.</p><div class="pad-sum"></div>`;
  return h;}
-function tick(i,v){const k='gd_ck_'+pk();const c=JSON.parse(localStorage[k]||'{}');c[i]=v;localStorage[k]=JSON.stringify(c);render(true);}
-function budget(n){const f=n/DATA.basePeople;const cats={};let tot=0;for(const o of DATA.order){const c=o.price*o.m*(o.scale?f:1);cats[o.cat]=(cats[o.cat]||0)+c;tot+=c;}cats['배송비 여유']=8000;tot+=8000;return {tot,cats};}
-function vBudget(){const goal=1000000;const b=budget(S.people);const pp=b.tot/30/S.people;const ok=b.tot<=goal;
- let h=`<div class="sum"><div class="card"><div class="muted">한 달 예상 (${S.people}명)</div><div class="big ${ok?'ok':'warn'}">${won(b.tot)}</div><div class="bar"><i style="width:${Math.min(100,b.tot/goal*100)}%;background:${ok?'var(--ok)':'var(--warn)'}"></i></div><div class="muted">목표 100만원의 ${Math.round(b.tot/goal*100)}%</div></div>
- <div class="card"><div class="muted">1인 하루 (세 끼)</div><div class="big">${won(pp)}</div><div class="muted">한 끼 평균 약 ${won(pp/3)}</div></div>
- <div class="card"><div class="muted">인원별 비교</div>${[6,7,8].map(n=>{const x=budget(n).tot;return `<div>${n}명 <b class="${x<=goal?'ok':'warn'}">${won(x)}</b></div>`}).join('')}</div></div>`;
- const cs=Object.entries(b.cats).sort((a,b)=>b[1]-a[1]);
- h+=`<div class="card"><h3 style="margin-top:0">어디에 쓰나 (한 달)</h3><table class="bt">${cs.map(([k,v])=>`<tr><td style="width:90px">${k}</td><td><div class="bar"><i style="width:${v/cs[0][1]*100}%"></i></div></td><td class="num" style="width:100px;text-align:right">${won(v)}</td></tr>`).join('')}</table><div class="muted">양념은 2~3달에 한 번 사니까 한 달 몫으로 나눠서 계산했어요. 첫 달은 양념을 한꺼번에 사서 7~8만원 더 나올 수 있어요.</div></div>`;
- h+=`<div class="card"><h3 style="margin-top:0">예산이 넘을 것 같을 때 (효과 큰 순서)</h3><ol>
- <li>삼겹살 5kg(54,500원) 대신 제육용 앞다리 3kg(31,200원) 한 번 더. 바베큐도 앞다리·목전지로: 약 -2.3만원</li>
- <li>계란 5판 → 3판(2주마다), 계란말이 대신 감자볶음: 약 -2.5만원</li>
- <li>도시락김 빼기, 잼은 2달에 한 번: 약 -2.5만원</li></ol>
- <div class="note">8명이 계속 먹으면 약 ${won(budget(8).tot)}로 100만원을 넘어요. 그때는 위 1~3번을 모두 하면 약 104만원까지 내려가요. 매점용 과자·음료·물·라면은 이 예산에 넣지 않았어요.</div></div>`;
+function sumbar(){const el=document.getElementById('sumbar');if(S.tab!=='order'){el.innerHTML='';return;}const tt=totals(rows());const allOn=rows().filter(r=>r.c.buy>0).every(r=>r.chosen);
+ el.innerHTML=`<div class="sumbar"><div class="t">선택 ${tt.n}개<br><b>${won(tt.sum+tt.ship)}</b>${tt.ship?` <span style="font-size:12px;opacity:.7">배송비 ${won(tt.ship)} 포함</span>`:''}</div><button class="btn gray" onclick="selAll(${!allOn})">${allOn?'전체 해제':'전체 선택'}</button><button class="btn" onclick="openCart()">담기 ▶</button></div>`;}
+function pick(id,v){const s=getSel();s[id]=v;saveSel(s);render(true);}
+function setS(id,v){const st=getStock();st.v[id]=v;saveStock(st);const s=getSel();delete s[id];saveSel(s);render(true);}
+function bump(id,d){const st=getStock();const o=O(id);let v=st.v[id]==='ok'?0:(+st.v[id]||0);v=Math.max(0,Math.round((v+d*(o.step||1))*100)/100);setS(id,v);}
+function setMode(m){S.mode=m;LS.gd_mode=m;render();}
+function selAll(on){const s=getSel();rows().forEach(r=>{if(on){if(r.c.buy>0)s[r.o.id]=true;}else s[r.o.id]=false;});saveSel(s);render(true);toast(on?'살 것 전체 선택':'전체 해제');}
+function resetStock(){if(!confirm('재고를 모두 0으로 지울까요?'))return;saveStock({v:{}});saveSel({});render();}
+function shareStock(){const st=getStock();const url=location.origin+location.pathname+'#s='+encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(st)))));copy(url,'재고 링크 복사됨. 카톡에 붙여넣어 보내세요');}
+function copy(txt,msg){const done=()=>toast(msg);if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(done,()=>fallback());}else fallback();function fallback(){const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){prompt('복사해서 쓰세요',txt);}ta.remove();}}
+function cartList(){return rows().filter(r=>r.chosen);}
+function getOpened(){try{return JSON.parse(LS.gd_opened||'{}')}catch(e){return {}}}
+function markOpened(id){const o=getOpened();o[id]=1;LS.gd_opened=JSON.stringify(o);}
+function openCart(){const list=cartList();if(!list.length){toast('선택된 품목이 없어요');return;}const op=getOpened();const next=list.find(r=>!op[r.o.id]);const done=list.filter(r=>op[r.o.id]).length;const tt=totals(rows());
+ let h=`<h2>쿠팡 장바구니 담기</h2><div class="muted">${list.length}개 · ${won(tt.sum+tt.ship)}</div>
+ <h3>방법 1. 하나씩 담기 (폰)</h3><div class="muted">버튼을 누르면 쿠팡이 열려요 → 수량 맞추고 <b>장바구니 담기</b> → 이 화면으로 돌아와서 다음.</div>
+ ${next?`<a class="btn big" style="margin-top:10px" target="_blank" href="https://www.coupang.com/vp/products/${next.o.url}" onclick="markOpened('${next.o.id}');setTimeout(openCart,300)">다음 (${done+1}/${list.length}): ${next.o.name.slice(0,18)}… ${next.cnt}개</a>`:`<div class="note" style="margin-top:10px">다 열었어요! 쿠팡 장바구니에서 결제하세요.</div>`}
+ <ul class="prog">${list.map(r=>`<li class="${op[r.o.id]?'done':''}">${op[r.o.id]?'✅':'⬜'} <span style="flex:1">${r.o.name} · <b>${r.cnt}개</b></span><a class="btn ghost" target="_blank" href="https://www.coupang.com/vp/products/${r.o.url}" onclick="markOpened('${r.o.id}');setTimeout(openCart,300)">열기</a></li>`).join('')}</ul>
+ <button class="btn gray" onclick="LS.gd_opened='{}';openCart()">진행 표시 초기화</button>
+ <h3>방법 2. Aside에게 맡기기</h3><div class="muted">목록을 복사해서 피터님께 보내면, Aside가 쿠팡 장바구니에 한 번에 담아요.</div>
+ <button class="btn big" style="margin-top:8px" onclick="copyForAside()">목록 복사</button>
+ <div class="muted" style="margin-top:12px">쿠팡이 다른 사이트에서 장바구니에 바로 넣는 걸 막고 있어서, 이 화면에서는 버튼 한 번으로 다 담을 수 없어요.</div>`;
+ openM(h);}
+function copyForAside(){const list=cartList();const txt='쿠팡 장바구니에 담아줘 (글램독 양양 식자재)\n'+list.map(r=>`- ${r.o.name} x${r.cnt} https://www.coupang.com/vp/products/${r.o.url}`).join('\n');copy(txt,'복사됨. 카톡으로 피터님께 보내세요');}
+/* ---------- 예산 ---------- */
+function monthly(n){const f=n/DATA.basePeople;const cats={};let tot=0;const add=(k,v)=>{cats[k]=(cats[k]||0)+v;tot+=v;};
+ for(const o of DATA.order){if(o.g==='opt')continue;if(o.g==='ask')add(o.cat,o.price*o.mon);else if(o.g==='local')add(o.cat,o.price*o.mon*f);else add(o.cat,o.mon*f/o.pack*o.price);}
+ add('배송비',15000);return {tot,cats};}
+function vBudget(){const goal=1000000,b=monthly(S.people),pp=b.tot/30/S.people,ok=b.tot<=goal;const st=getStock();const tt=totals(rows());
+ let h=`<div class="sum3"><div class="card"><div class="muted">한 달 예상 (${S.people}명)</div><div class="big ${ok?'ok':'warn'}">${won(b.tot)}</div><div class="bar"><i style="width:${Math.min(100,b.tot/goal*100)}%;background:${ok?'var(--ok)':'var(--warn)'}"></i></div><div class="muted">목표 100만원의 ${Math.round(b.tot/goal*100)}%</div></div>
+ <div class="card"><div class="muted">1인 하루 (세 끼)</div><div class="big">${won(pp)}</div><div class="muted">한 끼 약 ${won(pp/3)}</div></div>
+ <div class="card"><div class="muted">인원별 한 달</div>${[6,7,8,9].map(n=>{const x=monthly(n).tot;return `<div>${n}명 <b class="${x<=goal?'ok':'warn'}">${won(x)}</b></div>`}).join('')}</div></div>
+ <div class="card"><b>이번 주문 (재고 반영)</b><div class="big" style="font-size:22px">${won(tt.sum+tt.ship)}</div><div class="muted">${S.mode==='big'?'큰 주문(1일)':'작은 주문(15일)'} · 재고 입력일 ${st.date}. 재고가 있는 만큼 덜 사요.</div></div>`;
+ const cs=Object.entries(b.cats).sort((a,c)=>c[1]-a[1]);
+ h+=`<div class="card"><b>어디에 쓰나 (한 달, 재고 없이 계산)</b><table class="bt">${cs.map(([k,v])=>`<tr><td style="width:64px">${k}</td><td><div class="bar"><i style="width:${v/cs[0][1]*100}%"></i></div></td><td style="width:90px;text-align:right">${won(v)}</td></tr>`).join('')}</table><div class="muted">양념은 2~3달에 한 번 사니까 한 달 몫으로 나눴어요.</div></div>
+ <div class="card"><b>이미 아낀 것</b><ul style="padding-left:18px;margin:6px 0">
+ <li>쌀: 일반 햅쌀 20kg 59,500원 → 싸래기쌀 28,990원 (월 약 -6만원)</li>
+ <li>닭: 12kg 박스 → 2kg씩 필요한 만큼만</li><li>만두: CJ → 사조오양 대용량 (100g당 890원 → 419원)</li><li>김·코코볼은 선택으로 빼기</li></ul>
+ <b>더 아끼려면</b><ol style="padding-left:20px;margin:6px 0"><li>계란 5판 → 3판, 계란말이 대신 감자볶음: 월 약 -2.5만원</li><li>바베큐 2번 → 1번 (나머지는 제육): 월 약 -1만원</li><li>잼은 2달에 한 번: 월 약 -7천원</li></ol>
+ <div class="note">매점용 과자·음료·물·라면은 이 예산에 넣지 않았어요.</div></div>`;
  return h;}
-const tabs=['today','menu','recipes','order','budget'];
-function render(keep){document.getElementById('tabs').innerHTML=tabs.map(k=>`<button class="${S.tab===k?'on':''}" onclick="S.tab='${k}';render()">${t(k)}</button>`).join('');
- document.getElementById('people').innerHTML=[5,6,7,8,9].map(n=>`<button class="${S.people===n?'on':''}" onclick="S.people=${n};localStorage.gd_people=${n};render()">${n}</button>`).join('');
- document.getElementById('lbl-people').textContent=t('people');
- document.querySelectorAll('#lang button').forEach(b=>{b.classList.toggle('on',b.dataset.v===S.lang);b.onclick=()=>{S.lang=b.dataset.v;localStorage.gd_lang=S.lang;render();}});
- const v={today:vToday,menu:vMenu,recipes:vRecipes,order:vOrder,budget:vBudget}[S.tab]();
- const el=document.getElementById('view');const a=document.activeElement;const pos=a&&a.tagName==='INPUT'&&a.type!=='checkbox'?a.selectionStart:null;el.innerHTML=v;
+/* ---------- 공통 ---------- */
+const TABS=[['today','🍽'],['menu','📅'],['recipes','📖'],['order','🛒'],['budget','💰']];
+function render(keep){document.getElementById('tabs').innerHTML=TABS.map(([k,i])=>`<button class="${S.tab===k?'on':''}" onclick="go('${k}')"><i>${i}</i>${t(k)}</button>`).join('');
+ document.getElementById('people').innerHTML=[4,5,6,7,8,9,10].map(n=>`<option value="${n}" ${S.people===n?'selected':''}>${n}${t('people')}</option>`).join('');
+ document.querySelectorAll('#lang button').forEach(b=>{b.classList.toggle('on',b.dataset.v===S.lang);b.onclick=()=>{S.lang=b.dataset.v;LS.gd_lang=S.lang;render();}});
+ const el=document.getElementById('view');const y=window.scrollY;const a=document.activeElement;const pos=a&&a.tagName==='INPUT'&&a.type==='text'||a&&a.placeholder&&a.placeholder.startsWith('🔍')?a.selectionStart:null;
+ el.innerHTML={today:vToday,menu:vMenu,recipes:vRecipes,order:vOrder,budget:vBudget}[S.tab]();sumbar();
+ if(keep)window.scrollTo(0,y);
  if(pos!==null&&S.tab==='recipes'){const i=el.querySelector('.filters input');i.focus();i.setSelectionRange(pos,pos);}}
+function go(k){S.tab=k;LS.gd_tab=k;render();window.scrollTo(0,0);}
+document.getElementById('people').onchange=e=>{S.people=+e.target.value;LS.gd_people=S.people;render(true);};
+if(location.hash.startsWith('#s=')){try{const st=JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(location.hash.slice(3))))));LS.gd_stock=JSON.stringify(st);LS.gd_sel='{}';S.tab='order';history.replaceState(null,'',location.pathname);setTimeout(()=>toast('공유받은 재고를 불러왔어요 ('+st.date+')'),300);}catch(e){}}
 render();
 </script>
 </body>
